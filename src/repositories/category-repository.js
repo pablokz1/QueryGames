@@ -2,26 +2,26 @@ const db = require('../configs/database');
 
 async function findAll() {
     return new Promise((resolve, reject) => {
-        const platform = [];
-        db.each('SELECT * FROM platforms ORDER BY id', (err, row) => {
+        const category = [];
+        db.each('SELECT * FROM categories ORDER BY id', (err, row) => {
             if (err) {
-                console.error('Occurred an error with find all platforms!');
+                console.error('Occurred an error with find all categories!');
                 reject(err);
             }
-            platform.push(row);
+            category.push(row);
         }, (err, count) => {
             if (err) reject(err);
-            resolve(platform);
+            resolve(category);
         });
     });
 }
 
 async function findById(id) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('SELECT * FROM platforms WHERE id = ?', [id]);
+        const stmt = db.prepare('SELECT * FROM categories WHERE id = ?', [id]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find platform by id!');
+                console.error('Occurred an error with find category by id!');
                 reject(err);
             }
             resolve(row);
@@ -30,18 +30,18 @@ async function findById(id) {
     });
 }
 
-async function insert(platform) {
+async function insert(category) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO platforms(name) VALUES(?)');
-        stmt.bind([platform.name]);
+        const stmt = db.prepare('INSERT INTO categories(name) VALUES(?)');
+        stmt.bind([category.name]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with insert platform!');
+                console.error('Occurred an error with insert category!');
                 reject(err);
             }
         });
         stmt.finalize();
-        const stmt2 = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = "platforms"');
+        const stmt2 = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = "categories"');
         stmt2.get((err, row) => {
             resolve(findById(row['seq']));
         });  
@@ -49,13 +49,13 @@ async function insert(platform) {
     });
 }
 
-async function update(platform) {
+async function update(category) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE platforms set name = ? WHERE id = ?');
-        stmt.bind([platform.name, platform.id]);
+        const stmt = db.prepare('UPDATE categories set name = ? WHERE id = ?');
+        stmt.bind([category.name, category.id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update platform!');
+                console.error('Occurred an error with update category!');
                 reject(err);
             }
             resolve();
@@ -66,11 +66,11 @@ async function update(platform) {
 
 async function deleteById(id) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('DELETE FROM platforms WHERE id = ?');
+        const stmt = db.prepare('DELETE FROM categories WHERE id = ?');
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update platform!');
+                console.error('Occurred an error with update category!');
                 reject(err);
             }
             resolve();
