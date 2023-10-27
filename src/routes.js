@@ -2,6 +2,7 @@ const express = require('express');
 const userController = require('./controllers/user-controller');
 const platformController = require('./controllers/platform-controller');
 const categoryRepository = require('./controllers/category-controller');
+const gameRepository = require('./controllers/game-controller');
 
 const routes = express();
 
@@ -22,5 +23,11 @@ routes.get('/categories/:id', categoryRepository.getById);
 routes.post('/categories', categoryRepository.post);
 routes.put('/categories/:id', categoryRepository.putById);
 routes.delete('/categories/:id', categoryRepository.deleteById);
+
+routes.get('/games', gameRepository.get);
+routes.get('/games/:id', gameRepository.getById);
+routes.post('/games', gameRepository.post);
+routes.put('/games/:id', gameRepository.putById);
+routes.delete('/games/:id', gameRepository.deleteById);
 
 module.exports = routes;
