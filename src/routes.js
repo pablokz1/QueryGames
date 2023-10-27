@@ -3,6 +3,7 @@ const userController = require('./controllers/user-controller');
 const platformController = require('./controllers/platform-controller');
 const categoryRepository = require('./controllers/category-controller');
 const gameRepository = require('./controllers/game-controller');
+const scoreRepository = require('./controllers/score-controller');
 
 const routes = express();
 
@@ -29,5 +30,11 @@ routes.get('/games/:id', gameRepository.getById);
 routes.post('/games', gameRepository.post);
 routes.put('/games/:id', gameRepository.putById);
 routes.delete('/games/:id', gameRepository.deleteById);
+
+routes.get('/scores', scoreRepository.get);
+routes.get('/scores/:id', scoreRepository.getById);
+routes.post('/scores', scoreRepository.post);
+routes.put('/scores/:id', scoreRepository.putById);
+routes.delete('/scores/:id', scoreRepository.deleteById);
 
 module.exports = routes;
