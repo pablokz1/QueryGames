@@ -43,7 +43,7 @@ async function insert(user) {
         stmt.finalize();
         const stmt2 = db.prepare('SELECT seq FROM sqlite_sequence WHERE name = "users"');
         stmt2.get((err, row) => {
-            resolve(findById(row['seq']));
+            resolve(findById(row ? row['seq'] + 1 : 1));
         });  
         stmt2.finalize();    
     });
