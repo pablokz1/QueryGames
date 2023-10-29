@@ -1,6 +1,10 @@
 const scoreRepository = require('../repositories/score-repositort');
 
 async function get(req, res) {
+    if (req.params.gameId) {
+        const scores = await scoreRepository.findAllByGameId(req.params.gameId);
+        res.json(scores);    
+    }
     const scores = await scoreRepository.findAll();
     res.json(scores);
 }

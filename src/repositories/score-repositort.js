@@ -16,6 +16,24 @@ async function findAll() {
     });
 }
 
+async function findAllByGameId(gameId) {
+    return new Promise((resolve, reject) => {
+        const scores = [];
+        const stmt = db.prepare('SELECT S.id, S.note, S.comments, G.name, U.name FROM scores S INNER JOIN games G ON(S.gameId = G.id) INNER JOIN users U ON(S.userId = U.id) WHERE S.gameId = ?');
+        stmt.bind([gameId]);
+        stmt.each((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find all score by gameId!');
+                reject(err);
+            }
+            scores.push(row);
+        }, (err, count) => {
+            resolve(scores);
+        });
+        stmt.finalize();
+    });
+}
+
 async function findById(id) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('SELECT * FROM scores WHERE id = ?', [id]);
@@ -79,4 +97,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, insert, update, deleteById};
+module.exports = {findAll, findAllByGameId, findById, insert, update, deleteById};
