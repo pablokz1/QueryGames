@@ -30,6 +30,20 @@ async function findById(id) {
     });
 }
 
+async function findByEmailAndPassword(email, password) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find user by id!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
 async function insert(user) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('INSERT INTO users(name, email, dateOfBirth, password) VALUES(?, ?, ?, ?)');
@@ -79,4 +93,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, insert, update, deleteById};
+module.exports = {findAll, findById, findByEmailAndPassword, insert, update, deleteById};
