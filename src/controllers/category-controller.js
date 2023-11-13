@@ -11,15 +11,33 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
-    const category = await categoryRepository.insert(req.body);
-    res.status(201).json(category);
+    try {
+        const existingCategory = await categoryRepository.findByName(req.body.name);
+        if (existingCategory) {
+            return res.status(400).json({ error: 'Category already registered.' });
+        }
+        const category = await categoryRepository.insert(req.body);
+        res.status(201).json(category);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 }
 
 async function putById(req, res) {
-    const category = await categoryRepository.findById(req.params.id);
-    if (!category) res.status(404).json({message: 'Category not found!'});
-    await categoryRepository.update(req.body);
-    res.status(204).json()
+    try {
+        const existingCategory = await categoryRepository.findByName(req.body.name);
+        if (existingCategory) {
+            return res.status(400).json({ error: 'Category already registered.' });
+        }
+        const category = await categoryRepository.findById(req.params.id);
+        if (!category) res.status(404).json({message: 'Category not found!'});
+        await categoryRepository.update(req.body);
+    res.status(204).json();
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 }
 
 async function deleteById(req, res) {

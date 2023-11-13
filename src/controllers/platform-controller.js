@@ -11,15 +11,33 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
-    const platform = await platformRepository.insert(req.body);
-    res.status(201).json(platform);
+    try {
+        const existingPlatform = await platformRepository.findByName(req.body.name);
+        if (existingPlatform) {
+            return res.status(400).json({ error: 'Platform already registered.' });
+        }
+        const platform = await platformRepository.insert(req.body);
+        res.status(201).json(platform);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro interno do servidor.' });
+    }
 }
 
 async function putById(req, res) {
-    const platform = await platformRepository.findById(req.params.id);
-    if (!platform) res.status(404).json({message: 'Platform not found!'});
-    await platformRepository.update(req.body);
-    res.status(204).json()
+    try {
+        const existingPlatform = await platformRepository.findByName(req.body.name);
+        if (existingPlatform) {
+            return res.status(400).json({ error: 'Platform already registered.' });
+        }
+        const platform = await platformRepository.findById(req.params.id);
+        if (!platform) res.status(404).json({message: 'Platform not found!'});
+        await platformRepository.update(req.body);
+        res.status(204).json()
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
 }
 
 async function deleteById(req, res) {

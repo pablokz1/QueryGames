@@ -30,6 +30,20 @@ async function findById(id) {
     });
 }
 
+async function findByEmail(email) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('SELECT * FROM users WHERE email = ?', [email]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find user by id!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
 async function findByEmailAndPassword(email, password) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
@@ -65,8 +79,8 @@ async function insert(user) {
 
 async function update(user) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE users set name = ?, email = ?, dateOfBirth = ?, password = ? WHERE id = ?');
-        stmt.bind([user.name, user.email, user.dateOfBirth, user.password, user.id]);
+        const stmt = db.prepare('UPDATE users set name = ?, dateOfBirth = ?, password = ? WHERE id = ?');
+        stmt.bind([user.name, user.dateOfBirth, user.password, user.id]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with update user!');
@@ -93,4 +107,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, findByEmailAndPassword, insert, update, deleteById};
+module.exports = {findAll, findById, findByEmail, findByEmailAndPassword, insert, update, deleteById};

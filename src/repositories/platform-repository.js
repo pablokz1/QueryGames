@@ -30,6 +30,20 @@ async function findById(id) {
     });
 }
 
+async function findByName(name) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('SELECT * FROM platforms WHERE name = ?', [name]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find platform by name!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
 async function insert(platform) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('INSERT INTO platforms(name) VALUES(?)');
@@ -79,4 +93,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, insert, update, deleteById};
+module.exports = {findAll, findById, findByName, insert, update, deleteById};
