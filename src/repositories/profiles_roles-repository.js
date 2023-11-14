@@ -3,7 +3,7 @@ const db = require('../configs/database');
 async function findByProfileId(profileID) {
     return new Promise((resolve, reject) => {
         const gamesCategories = [];
-        const stmt = db.prepare('SELECT P.name FROM profiles_roles PR INNER JOIN roles R ON(PR.roleId = r.id) WHERE GC.profileId = ?');
+        const stmt = db.prepare('SELECT R.name FROM profiles_roles PR INNER JOIN roles R ON(PR.roleId = R.id) WHERE PR.profileId = ?');
         stmt.bind([profileID]);
         stmt.each((err, row) => {
             if (err) {
@@ -20,7 +20,7 @@ async function findByProfileId(profileID) {
 
 async function insert(profileId, roleId) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO profiles_roles(prifileId, roleId) VALUES(?, ?)');
+        const stmt = db.prepare('INSERT INTO profiles_roles(profileId, roleId) VALUES(?, ?)');
         stmt.bind([profileId, roleId]);
         stmt.run(err => {
             if (err) {

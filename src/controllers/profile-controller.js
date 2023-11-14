@@ -2,8 +2,11 @@ const profileRepository = require('../repositories/profile-repository');
 const profilesRolesRepository = require('../repositories/profiles_roles-repository')
 
 async function get(req, res) {
-    const users = await profileRepository.findAll();
-    res.json(users);
+    const profile = await profileRepository.findAll();
+    for(let i =0; i < profile.length; i++) {
+        profile[i].roles = await profilesRolesRepository.findByProfileId(profile[i].id);
+    }
+    res.json(profile);
 }
 
 async function getById(req, res) {
@@ -19,6 +22,11 @@ async function post(req, res) {
             return res.status(400).json({ error: 'Profile already registered.' });
         }
         const profile = await profileRepository.insert(req.body);
+        const role = req.body.roles;
+        role.forEach(async (role) => {
+            await profilesRolesRepository.insert(profile.id, role.id);  
+        });
+        profile['roles'] = await profilesRolesRepository.findByProfileId(profile.id);
         res.status(201).json(profile);
     } catch (error) {
         console.error(error);
