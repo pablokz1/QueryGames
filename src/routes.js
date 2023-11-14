@@ -5,6 +5,8 @@ const platformController = require('./controllers/platform-controller');
 const categoryRepository = require('./controllers/category-controller');
 const gameRepository = require('./controllers/game-controller');
 const scoreRepository = require('./controllers/score-controller');
+const profileRepository = require('./controllers/profile-controller');
+const roleRepository = require('./controllers/role-controller');
 
 const routes = express();
 
@@ -39,5 +41,17 @@ routes.get('/scores/:id', scoreRepository.getById);
 routes.post('/scores', authenticationController.verifyToken, scoreRepository.post);
 routes.put('/scores/:id', authenticationController.verifyToken, scoreRepository.putById);
 routes.delete('/scores/:id', authenticationController.verifyToken, scoreRepository.deleteById);
+
+routes.get('/profiles', profileRepository.get);
+routes.get('/profiles/:id', profileRepository.getById);
+routes.post('/profiles', profileRepository.post);
+routes.put('/profiles/:id', authenticationController.verifyToken, profileRepository.putById);
+routes.delete('/profiles/:id', authenticationController.verifyToken, profileRepository.deleteById);
+
+routes.get('/roles', roleRepository.get);
+routes.get('/roles/:id', roleRepository.getById);
+routes.post('/roles', roleRepository.post);
+routes.put('/roles/:id', authenticationController.verifyToken, roleRepository.putById);
+routes.delete('/roles/:id', authenticationController.verifyToken, roleRepository.deleteById);
 
 module.exports = routes;

@@ -30,6 +30,24 @@ async function findById(id) {
     });
 }
 
+// async function findAllByProfileId(gameId) {
+//     return new Promise((resolve, reject) => {
+//         const scores = [];
+//         const stmt = db.prepare('SELECT users.*, profiles.*, roles.* FROM users INNER JOIN profiles ON users.profileId = profile.id INNER JOIN roles ON users.roleId = roles.id;');
+//         stmt.bind([gameId]);
+//         stmt.each((err, row) => {
+//             if (err) {
+//                 console.error('Occurred an error with find all score by gameId!');
+//                 reject(err);
+//             }
+//             scores.push(row);
+//         }, (err, count) => {
+//             resolve(scores);
+//         });
+//         stmt.finalize();
+//     });
+// }
+
 async function findByEmail(email) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('SELECT * FROM users WHERE email = ?', [email]);
