@@ -1,4 +1,5 @@
 const userRepository = require('../repositories/user-repository');
+const profileRepository = require('../repositories/profile-repository');
 const jwt = require('jsonwebtoken');
 
 const ONE_MINUTE = 1000 * 60;
@@ -11,8 +12,13 @@ async function postAuth(req, res) {
         res.status(401).json({message: 'Invalid Credentials!!!'}).end();
         return;
     }
-    const timeExpire = ONE_MINUTE * 60;
-    const token = jwt.sign({userId: user.id, name: user.name}, SECRET, {subject: user.email, issuer: 'Game API', expiresIn: timeExpire});
+    let profileName = null;
+    if (user.profileId !== null) {
+        const profile = await profileRepository.findById(user.profileId);
+        profileName = profile.name;
+    }
+    const timeExpire = new Date().getTime() + (ONE_MINUTE * 60);
+    const token = jwt.sign({userId: user.id, username: user.name, profile: profileName}, SECRET, {subject: user.email, issuer: 'Query Games API', expiresIn: timeExpire});
     res.status(200).json({type: 'Bearer', token: token, expire: timeExpire});
 }
 
@@ -28,9 +34,23 @@ function verifyToken(req, res, next) {
             res.status(401).json({message: 'Invalid Token!!!'}).end();
             return;
         }
-        req.userId = decoded.userId;
+        req.logged = {
+            id: decoded.userId,
+            name: decoded.username,
+            profile: decoded.profile
+        };
+        /* const permission = permissoinTable[req.url.split('/')[1]];
+        if (permission != null || !permission.include(decoded.profile)) {
+            res.status(401).json({message: 'Invalid Token!!!'}).end();
+            return;
+        } */
         next();
     });
 }
+
+const permissoinTable = [
+    {'users': ['Administrador', 'Operador', 'Cliente']},   
+    {'games': ['Administrador']}
+];
 
 module.exports = {postAuth, verifyToken};

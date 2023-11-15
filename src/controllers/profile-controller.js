@@ -1,10 +1,10 @@
 const profileRepository = require('../repositories/profile-repository');
-const profilesRolesRepository = require('../repositories/profiles_roles-repository')
+const profilesRolesRepository = require('../repositories/profiles_roles-repository');
 
 async function get(req, res) {
     const profile = await profileRepository.findAll();
     for(let i =0; i < profile.length; i++) {
-        profile[i].roles = await profilesRolesRepository.findByProfileId(profile[i].id);
+        profile[i].roles = await profilesRolesRepository.findByRoleId(profile[i].id);
     }
     res.json(profile);
 }

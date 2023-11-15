@@ -2,7 +2,21 @@ const db = require('../configs/database');
 
 async function findByProfileId(profileID) {
     return new Promise((resolve, reject) => {
-        const gamesCategories = [];
+        const stmt = db.prepare('SELECT * FROM profiles WHERE id = ?', [profileID]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find user by id!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
+async function findByRoleId(profileID) {
+    return new Promise((resolve, reject) => {
+        const profilesRoles = [];
         const stmt = db.prepare('SELECT R.name FROM profiles_roles PR INNER JOIN roles R ON(PR.roleId = R.id) WHERE PR.profileId = ?');
         stmt.bind([profileID]);
         stmt.each((err, row) => {
@@ -10,9 +24,9 @@ async function findByProfileId(profileID) {
                 console.error('Occurred an error with find all profiles_roles!');
                 reject(err);
             }
-            gamesCategories.push(row);
+            profilesRoles.push(row);
         }, (err, count) => {
-            resolve(gamesCategories);
+            resolve(profilesRoles);
         });
         stmt.finalize();
     });
@@ -47,4 +61,4 @@ async function deleteByProfileId(profileId) {
    });
 }
 
-module.exports = {findByProfileId, insert, deleteByProfileId};
+module.exports = {findByProfileId, findByRoleId, insert, deleteByProfileId};

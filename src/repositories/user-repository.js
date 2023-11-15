@@ -30,24 +30,6 @@ async function findById(id) {
     });
 }
 
-// async function findAllByProfileId(gameId) {
-//     return new Promise((resolve, reject) => {
-//         const scores = [];
-//         const stmt = db.prepare('SELECT users.*, profiles.*, roles.* FROM users INNER JOIN profiles ON users.profileId = profile.id INNER JOIN roles ON users.roleId = roles.id;');
-//         stmt.bind([gameId]);
-//         stmt.each((err, row) => {
-//             if (err) {
-//                 console.error('Occurred an error with find all score by gameId!');
-//                 reject(err);
-//             }
-//             scores.push(row);
-//         }, (err, count) => {
-//             resolve(scores);
-//         });
-//         stmt.finalize();
-//     });
-// }
-
 async function findByEmail(email) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('SELECT * FROM users WHERE email = ?', [email]);
@@ -78,8 +60,8 @@ async function findByEmailAndPassword(email, password) {
 
 async function insert(user) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO users(name, email, dateOfBirth, password) VALUES(?, ?, ?, ?)');
-        stmt.bind([user.name, user.email, user.dateOfBirth, user.password]);
+        const stmt = db.prepare('INSERT INTO users(name, email, dateOfBirth, password, profileId) VALUES(?, ?, ?, ?, ?)');
+        stmt.bind([user.name, user.email, user.dateOfBirth, user.password, user.profileId]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with insert user!');
@@ -97,8 +79,8 @@ async function insert(user) {
 
 async function update(user) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE users set name = ?, dateOfBirth = ?, password = ? WHERE id = ?');
-        stmt.bind([user.name, user.dateOfBirth, user.password, user.id]);
+        const stmt = db.prepare('UPDATE users set name = ?, dateOfBirth = ?, password = ?, profileId = ? WHERE id = ?');
+        stmt.bind([user.name, user.dateOfBirth, user.password, user.profileId, user.id]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with update user!');

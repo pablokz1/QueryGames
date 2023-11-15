@@ -1,16 +1,33 @@
 const userRepository = require('../repositories/user-repository');
+const profileRepository = require('../repositories/profile-repository');
+
 
 async function get(req, res) {
+    console.log(req.url.split('/')[1]);
     const users = await userRepository.findAll();
+    for(let i =0; i < users.length; i++) {
+        const profileId = users[i].profileId;
+        if (profileId !== null) {
+            const profile = await profileRepository.findById(profileId);
+            users[i]['profile'] = profile.name;
+        }
+    }
     res.json(users);
 }
 
 async function getById(req, res) {
-    const user = await userRepository.findById(req.params.id);
+    const user = await userRepository.findById(req.params.id);7
+    if (user.profileId !== null) {
+        const profile = await profileRepository.findById(user.profileId);
+        user['profile'] = profile.name;
+    }
     res.json(user);
 }
 
 async function post(req, res) {
+    // if (req.logged.profile !== 'Master') {
+    //    return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    // }
     try {
         const existingUser = await userRepository.findByEmail(req.body.email);
         if (existingUser) {
@@ -26,7 +43,14 @@ async function post(req, res) {
 
 async function putById(req, res) {
     const user = await userRepository.findById(req.params.id);
-    if (!user) res.status(404).json({message: 'User not found!'});
+    if (!user) {
+        res.status(404).json({message: 'User not found!'});
+        return;
+    }
+    if (user.profileId !== null && user.profileId !== req.body.profileId) {
+        res.status(400).json({message: 'Invalid profile to user!'});
+        return;
+    }
     await userRepository.update(req.body);
     res.status(204).json();
 }

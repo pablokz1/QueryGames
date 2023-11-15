@@ -26,12 +26,16 @@ async function post(req, res) {
 
 async function putById(req, res) {
     try {
+        const category = await categoryRepository.findById(req.params.id);
+        if (!category) {
+            res.status(404).json({message: 'Category not found!'});
+            return;
+        }
         const existingCategory = await categoryRepository.findByName(req.body.name);
-        if (existingCategory) {
+        if (existingCategory && existingCategory.id !== category.id) {
             return res.status(400).json({ error: 'Category already registered.' });
         }
-        const category = await categoryRepository.findById(req.params.id);
-        if (!category) res.status(404).json({message: 'Category not found!'});
+
         await categoryRepository.update(req.body);
     res.status(204).json();
     } catch (error) {
