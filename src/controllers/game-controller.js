@@ -27,7 +27,10 @@ async function post(req, res) {
 
 async function putById(req, res) {
     const game = await gameRepository.findById(req.params.id);
-    if (!game) res.status(404).json({message: 'game not found!'});
+    if (!game) {
+        res.status(404).json({message: 'game not found!'});
+        return;
+    } 
     await gameRepository.update(req.body);
     res.status(204).json()
 }

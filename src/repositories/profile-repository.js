@@ -30,33 +30,33 @@ async function findById(id) {
     });
 }
 
-async function findByName(name) {
-    return new Promise((resolve, reject) => {
-        const stmt = db.prepare('SELECT * FROM profiles WHERE name = ?', [name]);
-        stmt.get((err, row) => {
-            if (err) {
-                console.error('Occurred an error with find profile by name and alias!');
-                reject(err);
-            }
-            resolve(row);
-        });
-        stmt.finalize();
-    });
-}
+// async function findByName(name) {
+//     return new Promise((resolve, reject) => {
+//         const stmt = db.prepare('SELECT * FROM profiles WHERE name = ?', [name]);
+//         stmt.get((err, row) => {
+//             if (err) {
+//                 console.error('Occurred an error with find profile by name and alias!');
+//                 reject(err);
+//             }
+//             resolve(row);
+//         });
+//         stmt.finalize();
+//     });
+// }
 
-async function findByAlias(alias) {
-    return new Promise((resolve, reject) => {
-        const stmt = db.prepare('SELECT * FROM profiles WHERE alias = ?', [alias]);
-        stmt.get((err, row) => {
-            if (err) {
-                console.error('Occurred an error with find profile by name and alias!');
-                reject(err);
-            }
-            resolve(row);
-        });
-        stmt.finalize();
-    });
-}
+// async function findByAlias(alias) {
+//     return new Promise((resolve, reject) => {
+//         const stmt = db.prepare('SELECT * FROM profiles WHERE alias = ?', [alias]);
+//         stmt.get((err, row) => {
+//             if (err) {
+//                 console.error('Occurred an error with find profile by name and alias!');
+//                 reject(err);
+//             }
+//             resolve(row);
+//         });
+//         stmt.finalize();
+//     });
+// }
 
 async function insert(profile) {
     return new Promise((resolve, reject) => {
@@ -107,4 +107,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, findByName, findByAlias, insert, update, deleteById};
+module.exports = {findAll, findById, insert, update, deleteById};

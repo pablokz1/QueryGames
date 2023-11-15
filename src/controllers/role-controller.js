@@ -12,9 +12,8 @@ async function getById(req, res) {
 
 async function post(req, res) {
     try {
-        const existingRoleName = await rolesRepository.findByName(req.body.name);
-        const existingRoleAlias = await rolesRepository.findByAlias(req.body.alias);
-        if (existingRoleName || existingRoleAlias) {
+        const existingRole = await rolesRepository.findById(req.body.id);
+        if (existingRole) {
             return res.status(400).json({ error: 'Role already registered.' });
         }
         const role = await rolesRepository.insert(req.body);
@@ -27,13 +26,15 @@ async function post(req, res) {
 
 async function putById(req, res) {
     try {
-        const existingRoleName = await rolesRepository.findByName(req.body.name);
-        const existingRoleAlias = await rolesRepository.findByAlias(req.body.alias);
-        if (existingRoleName || existingRoleAlias) {
+        const role = await rolesRepository.findById(req.params.id);
+        if (!role) {
+            res.status(404).json({message: 'Role not found!'});
+            return;
+        }
+        const existingRole = await rolesRepository.findById(req.body.id);
+        if (existingRole && existingRole.id !== role.id) {
             return res.status(400).json({ error: 'Role already registered.' });
         }
-        const role = await rolesRepository.findById(req.params.id);
-        if (!role) res.status(404).json({message: 'Role not found!'});
         await rolesRepository.update(req.body);
         res.status(204).json()
     } catch (error) {

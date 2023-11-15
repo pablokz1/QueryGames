@@ -16,9 +16,8 @@ async function getById(req, res) {
 
 async function post(req, res) {
     try {
-        const existingProfileName = await profileRepository.findByName(req.body.name);
-        const existingProfileAlias = await profileRepository.findByAlias(req.body.alias);
-        if (existingProfileName || existingProfileAlias) {
+        const existingProfile = await profileRepository.findById(req.body.id);
+        if (existingProfile) {
             return res.status(400).json({ error: 'Profile already registered.' });
         }
         const profile = await profileRepository.insert(req.body);
@@ -26,7 +25,7 @@ async function post(req, res) {
         role.forEach(async (role) => {
             await profilesRolesRepository.insert(profile.id, role.id);  
         });
-        profile['roles'] = await profilesRolesRepository.findByProfileId(profile.id);
+        profile['roles'] = await profilesRolesRepository.findByRoleId(profile.id);
         res.status(201).json(profile);
     } catch (error) {
         console.error(error);
@@ -36,13 +35,15 @@ async function post(req, res) {
 
 async function putById(req, res) {
     try {
-        const existingProfileName = await profileRepository.findByName(req.body.name);
-        const existingProfileAlias = await profileRepository.findByAlias(req.body.alias);
-        if (existingProfileName || existingProfileAlias) {
+        const profile = await profileRepository.findById(req.params.id);
+        if (!profile) {
+            res.status(404).json({message: 'Profile not found!'});
+            return;
+        }
+        const existingProfile = await profileRepository.findById(req.body.id);
+        if (existingProfile && existingProfile.id !== profile.id) {
             return res.status(400).json({ error: 'Profile already registered.' });
         }
-        const profile = await profileRepository.findById(req.params.id);
-        if (!profile) res.status(404).json({message: 'Profile not found!'});
         await profileRepository.update(req.body);
         res.status(204).json()
     } catch (error) {

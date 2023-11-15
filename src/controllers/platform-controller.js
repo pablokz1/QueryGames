@@ -26,12 +26,15 @@ async function post(req, res) {
 
 async function putById(req, res) {
     try {
+        const platform = await platformRepository.findById(req.params.id);
+        if (!platform) {
+            res.status(404).json({message: 'Platform not found!'});
+            return;
+        } 
         const existingPlatform = await platformRepository.findByName(req.body.name);
-        if (existingPlatform) {
+        if (existingPlatform && existingPlatform.id !== platform.id) {
             return res.status(400).json({ error: 'Platform already registered.' });
         }
-        const platform = await platformRepository.findById(req.params.id);
-        if (!platform) res.status(404).json({message: 'Platform not found!'});
         await platformRepository.update(req.body);
         res.status(204).json()
     } catch (error) {

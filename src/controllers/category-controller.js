@@ -37,7 +37,7 @@ async function putById(req, res) {
         }
 
         await categoryRepository.update(req.body);
-    res.status(204).json();
+        res.status(204).json();
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal server error.' });

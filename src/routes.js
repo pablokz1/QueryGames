@@ -14,7 +14,7 @@ routes.post('/authentication', authenticationController.postAuth);
 
 routes.get('/users', userController.get);
 routes.get('/users/:id', userController.getById);
-routes.post('/users', authenticationController.verifyToken, userController.post);
+routes.post('/users', userController.post);
 routes.put('/users/:id', authenticationController.verifyToken, userController.putById);
 routes.delete('/users/:id', authenticationController.verifyToken, userController.deleteById);
 
@@ -44,13 +44,13 @@ routes.delete('/scores/:id', authenticationController.verifyToken, scoreReposito
 
 routes.get('/profiles', profileRepository.get);
 routes.get('/profiles/:id', profileRepository.getById);
-routes.post('/profiles', profileRepository.post);
+routes.post('/profiles', authenticationController.verifyToken, profileRepository.post);
 routes.put('/profiles/:id', authenticationController.verifyToken, profileRepository.putById);
 routes.delete('/profiles/:id', authenticationController.verifyToken, profileRepository.deleteById);
 
 routes.get('/roles', roleRepository.get);
 routes.get('/roles/:id', roleRepository.getById);
-routes.post('/roles', roleRepository.post);
+routes.post('/roles', authenticationController.verifyToken, roleRepository.post);
 routes.put('/roles/:id', authenticationController.verifyToken, roleRepository.putById);
 routes.delete('/roles/:id', authenticationController.verifyToken, roleRepository.deleteById);
 
