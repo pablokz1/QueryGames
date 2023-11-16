@@ -37,7 +37,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const game = await gameRepository.findById(req.params.id);
-    if (!game) res.status(404).json({message: 'game not found!'});
+    if (!game) {
+        res.status(404).json({message: 'game not found!'});
+        return;
+    } 
     await gameRepository.deleteById(game.id);
     res.status(204).json()
 }

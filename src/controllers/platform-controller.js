@@ -45,7 +45,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const platform = await platformRepository.findById(req.params.id);
-    if (!platform) res.status(404).json({message: 'Platform not found!'});
+    if (!platform) {
+        res.status(404).json({message: 'Platform not found!'});
+        return;  
+    } 
     await platformRepository.deleteById(platform.id);
     res.status(204).json()
 }

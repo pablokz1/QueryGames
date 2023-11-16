@@ -31,7 +31,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const score = await scoreRepository.findById(req.params.id);
-    if (!score) res.status(404).json({message: 'score not found!'});
+    if (!score) {
+        res.status(404).json({message: 'score not found!'});
+        return;
+    }
     await scoreRepository.deleteById(score.id);
     res.status(204).json()
 }

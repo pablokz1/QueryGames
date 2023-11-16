@@ -53,7 +53,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const user = await userRepository.findById(req.params.id);
-    if (!user) res.status(404).json({message: 'User not found!'});
+    if (!user) {
+        res.status(404).json({message: 'User not found!'});
+        return;
+    }
     await userRepository.deleteById(user.id);
     res.status(204).json()
 }

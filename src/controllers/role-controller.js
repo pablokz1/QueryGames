@@ -45,7 +45,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const role = await rolesRepository.findById(req.params.id);
-    if (!role) res.status(404).json({message: 'Role not found!'});
+    if (!role) {
+        res.status(404).json({message: 'Role not found!'});
+        return;
+    }
     await rolesRepository.deleteById(role.id);
     res.status(204).json()
 }

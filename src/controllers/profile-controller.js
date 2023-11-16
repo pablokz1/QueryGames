@@ -54,7 +54,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const profile = await profileRepository.findById(req.params.id);
-    if (!profile) res.status(404).json({message: 'Profile not found!'});
+    if (!profile) {
+        res.status(404).json({message: 'Profile not found!'});
+        return;
+    } 
     await profileRepository.deleteById(profile.id);
     res.status(204).json()
 }

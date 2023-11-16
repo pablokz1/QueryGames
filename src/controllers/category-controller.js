@@ -46,7 +46,10 @@ async function putById(req, res) {
 
 async function deleteById(req, res) {
     const category = await categoryRepository.findById(req.params.id);
-    if (!category) res.status(404).json({message: 'Category not found!'});
+    if (!category) {
+        res.status(404).json({message: 'Category not found!'});
+        return;
+    }
     await categoryRepository.deleteById(category.id);
     res.status(204).json()
 }
