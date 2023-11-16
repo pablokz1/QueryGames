@@ -3,7 +3,6 @@ const profileRepository = require('../repositories/profile-repository');
 
 
 async function get(req, res) {
-    console.log(req.url.split('/')[1]);
     const users = await userRepository.findAll();
     for(let i =0; i < users.length; i++) {
         const profileId = users[i].profileId;
@@ -25,9 +24,6 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
-    // if (req.logged.profile !== 'Master') {
-    //    return res.status(403).json({message: 'You not has permission to execute this operation!'});
-    // }
     try {
         const existingUser = await userRepository.findByEmail(req.body.email);
         if (existingUser) {
