@@ -25,6 +25,9 @@ async function post(req, res) {
 }
 
 async function putById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     try {
         const platform = await platformRepository.findById(req.params.id);
         if (!platform) {

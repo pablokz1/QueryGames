@@ -11,6 +11,9 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     try {
         const existingCategory = await categoryRepository.findByName(req.body.name);
         if (existingCategory) {
@@ -25,6 +28,9 @@ async function post(req, res) {
 }
 
 async function putById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     try {
         const category = await categoryRepository.findById(req.params.id);
         if (!category) {
