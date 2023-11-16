@@ -45,6 +45,9 @@ async function putById(req, res) {
 }
 
 async function deleteById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     const category = await categoryRepository.findById(req.params.id);
     if (!category) {
         res.status(404).json({message: 'Category not found!'});

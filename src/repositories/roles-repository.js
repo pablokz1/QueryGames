@@ -16,24 +16,6 @@ async function findAll() {
     });
 }
 
-// async function findAllByProfileId(gameId) {
-//     return new Promise((resolve, reject) => {
-//         const scores = [];
-//         const stmt = db.prepare('SELECT p.id, p.name, p.alias, p.description, u.name, U.email FROM profiles P INNER JOIN roles r ON(r.roleId = r.id) INNER JOIN users U ON(.userId = U.id) WHERE S.gameId = ?');
-//         stmt.bind([gameId]);
-//         stmt.each((err, row) => {
-//             if (err) {
-//                 console.error('Occurred an error with find all score by gameId!');
-//                 reject(err);
-//             }
-//             scores.push(row);
-//         }, (err, count) => {
-//             resolve(scores);
-//         });
-//         stmt.finalize();
-//     });
-// }
-
 async function findById(id) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('SELECT * FROM roles WHERE id = ?', [id]);
@@ -47,34 +29,6 @@ async function findById(id) {
         stmt.finalize();
     });
 }
-
-// async function findByName(name) {
-//     return new Promise((resolve, reject) => {
-//         const stmt = db.prepare('SELECT * FROM roles WHERE name = ?', [name]);
-//         stmt.get((err, row) => {
-//             if (err) {
-//                 console.error('Occurred an error with find role by name and alias!');
-//                 reject(err);
-//             }
-//             resolve(row);
-//         });
-//         stmt.finalize();
-//     });
-// }
-
-// async function findByAlias(alias) {
-//     return new Promise((resolve, reject) => {
-//         const stmt = db.prepare('SELECT * FROM roles WHERE alias = ?', [alias]);
-//         stmt.get((err, row) => {
-//             if (err) {
-//                 console.error('Occurred an error with find role by name and alias!');
-//                 reject(err);
-//             }
-//             resolve(row);
-//         });
-//         stmt.finalize();
-//     });
-// }
 
 async function insert(role) {
     return new Promise((resolve, reject) => {

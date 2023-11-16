@@ -52,6 +52,9 @@ async function putById(req, res) {
 }
 
 async function deleteById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     const user = await userRepository.findById(req.params.id);
     if (!user) {
         res.status(404).json({message: 'User not found!'});

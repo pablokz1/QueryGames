@@ -44,10 +44,13 @@ async function putById(req, res) {
 }
 
 async function deleteById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+       return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     const platform = await platformRepository.findById(req.params.id);
     if (!platform) {
         res.status(404).json({message: 'Platform not found!'});
-        return;  
+        return;
     } 
     await platformRepository.deleteById(platform.id);
     res.status(204).json()

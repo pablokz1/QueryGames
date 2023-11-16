@@ -39,18 +39,8 @@ function verifyToken(req, res, next) {
             name: decoded.username,
             profile: decoded.profile
         };
-        /* const permission = permissoinTable[req.url.split('/')[1]];
-        if (permission != null || !permission.include(decoded.profile)) {
-            res.status(401).json({message: 'Invalid Token!!!'}).end();
-            return;
-        } */
         next();
     });
 }
-
-const permissoinTable = [
-    {'users': ['Administrador', 'Operador', 'Cliente']},   
-    {'games': ['Administrador']}
-];
 
 module.exports = {postAuth, verifyToken};

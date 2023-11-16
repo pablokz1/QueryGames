@@ -11,6 +11,9 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     try {
         const existingRole = await rolesRepository.findById(req.body.id);
         if (existingRole) {
@@ -25,6 +28,9 @@ async function post(req, res) {
 }
 
 async function putById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     try {
         const role = await rolesRepository.findById(req.params.id);
         if (!role) {
@@ -44,6 +50,9 @@ async function putById(req, res) {
 }
 
 async function deleteById(req, res) {
+    if (req.logged.profile !== 'Administrador') {
+        return res.status(403).json({message: 'You not has permission to execute this operation!'});
+    }
     const role = await rolesRepository.findById(req.params.id);
     if (!role) {
         res.status(404).json({message: 'Role not found!'});
