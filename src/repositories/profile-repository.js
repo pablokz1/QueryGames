@@ -5,7 +5,7 @@ async function findAll() {
         const score = [];
         db.each('SELECT * FROM profiles ORDER BY id', (err, row) => {
             if (err) {
-                console.error('Occurred an error with find all scores!');
+                console.error('Occurred an error with find all profiles!');
                 reject(err);
             }
             score.push(row);
@@ -21,7 +21,7 @@ async function findById(id) {
         const stmt = db.prepare('SELECT * FROM profiles WHERE id = ?', [id]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find user by id!');
+                console.error('Occurred an error with find profile by id!');
                 reject(err);
             }
             resolve(row);
@@ -70,7 +70,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update profile!');
+                console.error('Occurred an error with delete profile!');
                 reject(err);
             }
             resolve();

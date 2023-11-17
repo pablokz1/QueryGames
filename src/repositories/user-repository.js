@@ -35,7 +35,7 @@ async function findByEmail(email) {
         const stmt = db.prepare('SELECT * FROM users WHERE email = ?', [email]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find user by id!');
+                console.error('Occurred an error with find user by e-mail!');
                 reject(err);
             }
             resolve(row);
@@ -49,7 +49,7 @@ async function findByEmailAndPassword(email, password) {
         const stmt = db.prepare('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find user by id!');
+                console.error('Occurred an error with find user by e-mail and password!');
                 reject(err);
             }
             resolve(row);
@@ -98,7 +98,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update user!');
+                console.error('Occurred an error with delete user!');
                 reject(err);
             }
             resolve();

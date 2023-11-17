@@ -84,7 +84,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update platform!');
+                console.error('Occurred an error with delte platform!');
                 reject(err);
             }
             resolve();

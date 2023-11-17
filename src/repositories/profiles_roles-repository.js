@@ -5,7 +5,7 @@ async function findByProfileId(profileID) {
         const stmt = db.prepare('SELECT * FROM profiles WHERE id = ?', [profileID]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find user by id!');
+                console.error('Occurred an error with find profile by id!');
                 reject(err);
             }
             resolve(row);
@@ -21,7 +21,7 @@ async function findByRoleId(profileID) {
         stmt.bind([profileID]);
         stmt.each((err, row) => {
             if (err) {
-                console.error('Occurred an error with find all profiles_roles!');
+                console.error('Occurred an error with find role by id!');
                 reject(err);
             }
             profilesRoles.push(row);
@@ -38,7 +38,7 @@ async function insert(profileId, roleId) {
         stmt.bind([profileId, roleId]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with insert profile!');
+                console.error('Occurred an error with insert role!');
                 reject(err);
             }
         });
@@ -46,13 +46,13 @@ async function insert(profileId, roleId) {
     });
 }
 
-async function deleteByProfileId(profileId) {
+async function deleteByRoleId(profileId) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('DELETE FROM profiles_roles WHERE profileId = ?');
+        const stmt = db.prepare('DELETE FROM profiles_roles WHERE roleId = ?');
         stmt.bind([profileId]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update profile!');
+                console.error('Occurred an error with delete role!');
                 reject(err);
             }
             resolve();
@@ -61,4 +61,4 @@ async function deleteByProfileId(profileId) {
    });
 }
 
-module.exports = {findByProfileId, findByRoleId, insert, deleteByProfileId};
+module.exports = {findByProfileId, findByRoleId, insert, deleteByRoleId};

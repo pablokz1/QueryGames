@@ -70,7 +70,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update roles!');
+                console.error('Occurred an error with delete role!');
                 reject(err);
             }
             resolve();

@@ -15,7 +15,7 @@ async function get(req, res) {
 }
 
 async function getById(req, res) {
-    const user = await userRepository.findById(req.params.id);7
+    const user = await userRepository.findById(req.params.id);
     if (user.profileId !== null) {
         const profile = await profileRepository.findById(user.profileId);
         user['profile'] = profile.name;

@@ -35,7 +35,7 @@ async function findByName(name) {
         const stmt = db.prepare('SELECT * FROM categories WHERE name = ?', [name]);
         stmt.get((err, row) => {
             if (err) {
-                console.error('Occurred an error with find platform by name!');
+                console.error('Occurred an error with find category by name!');
                 reject(err);
             }
             resolve(row);
@@ -84,7 +84,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update category!');
+                console.error('Occurred an error with delete category!');
                 reject(err);
             }
             resolve();

@@ -88,7 +88,7 @@ async function deleteById(id) {
         stmt.bind([id]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update scores!');
+                console.error('Occurred an error with delete scores!');
                 reject(err);
             }
             resolve();

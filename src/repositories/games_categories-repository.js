@@ -38,7 +38,7 @@ async function deleteByGameId(gameId) {
         stmt.bind([gameId]);
         stmt.run(err => {
             if (err) {
-                console.error('Occurred an error with update game!');
+                console.error('Occurred an error with delete game!');
                 reject(err);
             }
             resolve();
