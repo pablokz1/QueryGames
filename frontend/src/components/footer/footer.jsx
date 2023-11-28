@@ -1,5 +1,4 @@
 import React from 'react';
-import './footer.css';
 import logo from '../../assets/image/logoQuery.png';
 import playStory from '../../assets/image/baixe nosso app.png'
 

@@ -1,30 +1,38 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../assets/image/logoQuery.png';
+import React from "react";
+import {
+  Logo,
+  NavbarContainer,
+  NavbarContent,
+  NavbarTogglerButton,
+  NavbarMenu,
+  NavbarList,
+  NavbarListItem,
+  NavbarLink,
+} from "./navbar";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <img src={logo} alt="" />
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
-              <a className="nav-link" href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/sobre">Sobre</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/contato">Contato</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <NavbarContainer>
+      <NavbarContent>
+        <Logo />
+        <NavbarTogglerButton type="button">
+          <span>&#9776;</span>
+        </NavbarTogglerButton>
+        <NavbarMenu>
+          <NavbarList>
+            <NavbarListItem>
+              <NavbarLink href="/">Home</NavbarLink>
+            </NavbarListItem>
+            <NavbarListItem>
+              <NavbarLink href="/sobre">Sobre</NavbarLink>
+            </NavbarListItem>
+            <NavbarListItem>
+              <NavbarLink href="/contato">Contato</NavbarLink>
+            </NavbarListItem>
+          </NavbarList>
+        </NavbarMenu>
+      </NavbarContent>
+    </NavbarContainer>
   );
 };
 
