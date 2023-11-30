@@ -6,27 +6,27 @@ export const FooterLayout = styled.footer`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: black;
+  background-color: #0d0d0d;
   @media (max-width: 768px) {
   }
 `;
 
 export const Logo = styled.img`
-  width: 10rem;
-  height: 5rem;
+  width: 180px;
   @media (max-width: 768px) {
     width: 6rem;
     height: 3rem;
   }
 `;
+
 export const PlayStoreImage = styled.img`
-  width: 15rem;
-  height: 6rem;
+  width: 180px;
   @media (max-width: 768px) {
     width: 8rem;
     height: 3rem;
   }
 `;
+
 export const ContainerList = styled.ul`
   width: 40%;
   display: flex;
@@ -37,9 +37,24 @@ export const ContainerList = styled.ul`
   li {
     color: white;
     font-size: 10px;
+
     a {
       color: white;
       text-decoration: none;
+      font-weight: 400px;
+      font-size: 15px;
+      text-align: center;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-decoration-color: #f2bf5e;
+    }
+
+    p {
+      font-weight: 400px;
+      font-size: 15px;
+      text-align: center;
     }
   }
   @media (max-width: 768px) {

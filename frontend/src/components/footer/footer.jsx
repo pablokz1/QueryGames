@@ -14,7 +14,9 @@ const Footer = () => {
         <li>
           <a href="/">Quem Somos?</a>
         </li>
-        <li>querygames@gmail.com</li>
+        <li>
+          <p>Flae conosco <br/>
+          querygames@gmail.com</p></li>
       </ContainerList>
     </FooterLayout>
   );
