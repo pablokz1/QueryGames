@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MainContainer,
   RegisterSection,
   Wrapper,
-  Input,
   InputBox,
-  WallpaperContainer,
+  Input,
   Button,
+  WallpaperContainer,
 } from "./style";
-import Footer from "../../components/footer/footer";
 import Logo from "../../assets/image/logoQuery.svg";
 import Banner from "../../assets/image/valorant.png";
+import Footer from "../../components/footer/footer";
+import { api } from "../../api/config";
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    dateOfBirth: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await api.post('users', { formData })
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <MainContainer>
@@ -20,30 +47,53 @@ const Register = () => {
           <Wrapper>
             <img src={Logo} alt="Logo" />
             <h1>CADASTRE-SE</h1>
-            <InputBox>
-              <Input type="text" name="username" placeholder="Nome completo" />
-            </InputBox>
-            <InputBox>
-              <Input type="text" name="nickname" placeholder="Apelido" />
-            </InputBox>
-            <InputBox>
-              <Input type="date" name="data" />
-            </InputBox>
-            <InputBox>
-              <Input type="text" name="email" placeholder="Email" />
-            </InputBox>
-            <InputBox>
-              <Input type="password" name="password" placeholder="Senha" />
-            </InputBox>
-            <InputBox>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Confirmar senha"
-              />
-            </InputBox>
-
-            <Button>Cadastrar</Button>
+            <form onSubmit={handleSubmit}>
+              <InputBox>
+                <Input
+                  type="text"
+                  name="username"
+                  placeholder="Nome completo"
+                  value={formData.username}
+                  onChange={handleChange}
+                />
+              </InputBox>
+              <InputBox>
+                <Input
+                  type="text"
+                  name="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </InputBox>
+              <InputBox>
+                <Input
+                  type="date"
+                  name="data"
+                  value={formData.data}
+                  onChange={handleChange}
+                />
+              </InputBox>
+              <InputBox>
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Senha"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </InputBox>
+              {/* <InputBox>
+                <Input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirmar senha"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                />
+              </InputBox> */}
+            </form>
+              <Button onClick={handleSubmit}>Cadastrar</Button>
           </Wrapper>
         </RegisterSection>
         <WallpaperContainer>
