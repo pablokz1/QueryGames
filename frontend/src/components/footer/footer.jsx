@@ -2,6 +2,7 @@ import React from "react";
 import Image from "../../assets/image/logoQuery.png";
 import playStory from "../../assets/image/baixe nosso app.png";
 import { FooterLayout, Logo, PlayStoreImage, ContainerList } from "./styles";
+
 const Footer = () => {
   return (
     <FooterLayout>

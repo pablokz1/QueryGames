@@ -58,6 +58,6 @@ export const ContainerList = styled.ul`
     }
   }
   @media (max-width: 768px) {
-    flex-direction: column;
+    display: none;
   }
 `;

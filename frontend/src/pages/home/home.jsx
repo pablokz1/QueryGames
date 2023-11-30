@@ -3,6 +3,8 @@ import { Container,ContainerText } from "./style";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
 import { IoMdSearch } from "react-icons/io";
+import FeaturedGames from '../../components/featuredGames/featuredGames'
+
 export default function Home() {
   return (
     <section>
@@ -27,6 +29,10 @@ export default function Home() {
           </p>
         </ContainerText>
       </Container>
+      
+      <FeaturedGames>
+
+      </FeaturedGames>
     </section>
   );
 }
