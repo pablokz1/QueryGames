@@ -53,6 +53,10 @@ export const GamesContainer = styled.div`
   width: 100%;
   gap: 0;
   flex-wrap: nowrap;
+
+  @media (max-width: 768px) {
+    width: 1000%;
+  }
 `;
 
 export const GameItem = styled.div`
@@ -90,6 +94,11 @@ export const GameItem = styled.div`
     opacity: 0;
     transition: opacity 0.3s ease-out;
   }
+
+  @media (max-width: 768px) {
+    width: 35%;
+  }
+
 `;
 
 export const GameImage = styled.img`
@@ -97,6 +106,7 @@ export const GameImage = styled.img`
   height: 75%;
   border-radius: 8px;
   margin-bottom: 10px;
+  
 `;
 
 export const Platforms  = styled.p`
