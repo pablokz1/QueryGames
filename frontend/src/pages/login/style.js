@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const MainContainer = styled.main`
   display: flex;
-  margin: 0;
 `;
 
 export const LoginContainer = styled.section`
@@ -115,7 +114,7 @@ export const Input = styled.input`
 
 export const WallpaperContainer = styled.section`
   img {
-    height: 100vh;
+    height: 100%;
     width: auto;
     display: block;
     background-size: cover;
@@ -127,44 +126,3 @@ export const WallpaperContainer = styled.section`
       display: none;
   }
 `;
-
-// export const MediaQueryStyles = styled.div`
-//   @media (max-width: 768px) {
-//     .wallpaper {
-//       display: none;
-//     }
-
-//     main {
-//       flex-direction: column;
-//     }
-
-//     h1 {
-//       font-size: 24px;
-//       letter-spacing: 1px;
-//       text-align: center;
-//     }
-
-//     p {
-//       font-size: 16px;
-//       text-align: center;
-//     }
-
-//     .logo {
-//       width: 250px;
-//     }
-
-//     .button {
-//       width: 120px;
-//       height: 32px;
-//     }
-
-//     .box-text {
-//       max-width: 250px;
-//     }
-
-//     .input {
-//       padding: 15px 10px;
-//       font-size: 0.8em;
-//     }
-//   }
-// `;

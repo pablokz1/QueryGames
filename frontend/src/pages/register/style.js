@@ -1,11 +1,34 @@
 import styled from "styled-components";
 
+export const MainContainer = styled.main`
+  display: flex;
+`;
+
+export const RegisterContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(35px, 8%, 70px);
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  h1 {
+    color: #212121;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    letter-spacing: 7px;
+  }
 `;
 
 export const RegisterSection = styled.section`
@@ -16,11 +39,12 @@ export const RegisterSection = styled.section`
   color: #d9d0c7;
 `;
 
-export const BoxText = styled.label`
+export const InputBox = styled.label`
   width: 280px;
   height: 50px;
   display: block;
   margin-bottom: 30px;
+  position: relative;
 `;
 
 export const Input = styled.input`
@@ -30,7 +54,7 @@ export const Input = styled.input`
   border-radius: 5px;
   outline: none;
   font-size: 0.9em;
-  padding: 25px 10px 10px;
+  padding: 18px 10px 10px;
   font-weight: 600;
   font-style: italic;
   color: #595959;
@@ -45,17 +69,26 @@ export const Button = styled.button`
   background-color: #262626;
   color: white;
   border: none;
-  cursor: pointer;
+  margin-bottom: 50px;
+
+  &:hover {
+    background-color: #fec163;
+    color: #0d0d0d;
+    cursor: pointer;
+  }
 `;
 
-export const WallpaperSection = styled.section`
-  img {
-    height: 100%;
-    width: auto;
-    display: block;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    flex: 1;
-  }
+export const WallpaperContainer = styled.section`
+img {
+  height: 100%;
+  width: auto;
+  display: block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    display: none;
+}
 `;

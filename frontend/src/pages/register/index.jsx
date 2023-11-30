@@ -1,73 +1,57 @@
 import React from "react";
 import {
+  MainContainer,
   RegisterSection,
   Wrapper,
   Input,
-  BoxText,
-  WallpaperSection,
+  InputBox,
+  WallpaperContainer,
   Button,
 } from "./style";
 import Footer from "../../components/footer/footer";
+import Logo from "../../assets/image/logoQuery.svg";
+import Banner from "../../assets/image/valorant.png";
 
 const Register = () => {
   return (
-    <html lang="pt-br">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cadastro</title>
-      </head>
-      <body>
-        <img
-          src="../assets/image/logoff.png"
-          alt=""
-          className="btn-back"
-          onClick={() => window.history.back()}
-        />
-        <main>
-          <RegisterSection className="register">
-            <Wrapper>
-              <img src="../assets/image/logoQuery.svg" alt="Logo" />
-              <h1>CADASTRE-SE</h1>
-              <BoxText>
-                <Input
-                  type="text"
-                  name="username"
-                  placeholder="Nome completo"
-                />
-              </BoxText>
-              <BoxText>
-                <Input type="text" name="nickname" placeholder="Apelido" />
-              </BoxText>
-              <BoxText>
-                <Input type="date" name="data" />
-              </BoxText>
-              <BoxText>
-                <Input type="text" name="email" placeholder="Email" />
-              </BoxText>
-              <BoxText>
-                <Input type="password" name="password" placeholder="Senha" />
-              </BoxText>
-              <BoxText>
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="Confirmar senha"
-                />
-              </BoxText>
-              <a href="/">
-                <Button>Cadastrar</Button>
-              </a>
-            </Wrapper>
-          </RegisterSection>
-          <WallpaperSection className="wallpaper">
-            <img src="../assets/image/valorant.png" alt="" />
-          </WallpaperSection>
-        </main>
-        <script src="../js/goBack.js"></script>
-      </body>
+    <>
+      <MainContainer>
+        <RegisterSection>
+          <Wrapper>
+            <img src={Logo} alt="Logo" />
+            <h1>CADASTRE-SE</h1>
+            <InputBox>
+              <Input type="text" name="username" placeholder="Nome completo" />
+            </InputBox>
+            <InputBox>
+              <Input type="text" name="nickname" placeholder="Apelido" />
+            </InputBox>
+            <InputBox>
+              <Input type="date" name="data" />
+            </InputBox>
+            <InputBox>
+              <Input type="text" name="email" placeholder="Email" />
+            </InputBox>
+            <InputBox>
+              <Input type="password" name="password" placeholder="Senha" />
+            </InputBox>
+            <InputBox>
+              <Input
+                type="password"
+                name="password"
+                placeholder="Confirmar senha"
+              />
+            </InputBox>
+
+            <Button>Cadastrar</Button>
+          </Wrapper>
+        </RegisterSection>
+        <WallpaperContainer>
+          <img src={Banner} alt="" />
+        </WallpaperContainer>
+      </MainContainer>
       <Footer />
-    </html>
+    </>
   );
 };
 
