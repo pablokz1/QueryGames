@@ -1,51 +1,8 @@
 import styled from "styled-components";
 
-export const GlobalStyles = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
-  }
-
-  body {
-    background-color: #595959;
-    scrollbar-width: thin;
-    scrollbar-color: #f1bf5e #262626;
-  }
-
-  ::-webkit-scrollbar {
-    height: 12px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #f1bf5e;
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: #262626;
-  }
-
-  body::-webkit-scrollbar-thumb {
-    background-color: #f1bf5e;
-  }
-
-  body::-webkit-scrollbar-track {
-    background-color: #262626;
-  }
-`;
-
 export const MainContainer = styled.main`
   display: flex;
-`;
-
-export const HeaderContainer = styled.header`
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 9999;
-  cursor: pointer;
+  margin: 0;
 `;
 
 export const LoginContainer = styled.section`
@@ -64,10 +21,18 @@ export const LoginWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  h1 {
+    color: #212121;
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    letter-spacing: 7px;
+  }
 `;
 
 export const ForgotPasswordLink = styled.a`
-  font-family: Open Sans;
   font-size: 12px;
   font-weight: 600;
   line-height: 30px;
@@ -104,7 +69,6 @@ export const Button = styled.button`
 `;
 
 export const SignUpLink = styled.a`
-  font-family: Open Sans;
   font-size: 10px;
   font-weight: 600;
   line-height: 30px;
@@ -133,7 +97,7 @@ export const PasswordIcon = styled.i`
   cursor: pointer;
   position: absolute;
   right: 5%;
-  top: 10px;
+  top: 8px;
 `;
 
 export const Input = styled.input`
@@ -143,7 +107,7 @@ export const Input = styled.input`
   border-radius: 5px;
   outline: none;
   font-size: 0.9em;
-  padding: 25px 10px 10px;
+  padding: 18px 10px 10px;
   font-weight: 600;
   font-style: italic;
   color: #595959;
@@ -151,53 +115,56 @@ export const Input = styled.input`
 
 export const WallpaperContainer = styled.section`
   img {
-    height: 100%;
+    height: 100vh;
     width: auto;
     display: block;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     flex: 1;
-  }
-`;
 
-export const MediaQueryStyles = styled.div`
-  @media (max-width: 768px) {
-    .wallpaper {
+    @media (max-width: 768px) {
       display: none;
-    }
-
-    main {
-      flex-direction: column;
-    }
-
-    h1 {
-      font-size: 24px;
-      letter-spacing: 1px;
-      text-align: center;
-    }
-
-    p {
-      font-size: 16px;
-      text-align: center;
-    }
-
-    .logo {
-      width: 250px;
-    }
-
-    .button {
-      width: 120px;
-      height: 32px;
-    }
-
-    .box-text {
-      max-width: 250px;
-    }
-
-    .input {
-      padding: 15px 10px;
-      font-size: 0.8em;
-    }
   }
 `;
+
+// export const MediaQueryStyles = styled.div`
+//   @media (max-width: 768px) {
+//     .wallpaper {
+//       display: none;
+//     }
+
+//     main {
+//       flex-direction: column;
+//     }
+
+//     h1 {
+//       font-size: 24px;
+//       letter-spacing: 1px;
+//       text-align: center;
+//     }
+
+//     p {
+//       font-size: 16px;
+//       text-align: center;
+//     }
+
+//     .logo {
+//       width: 250px;
+//     }
+
+//     .button {
+//       width: 120px;
+//       height: 32px;
+//     }
+
+//     .box-text {
+//       max-width: 250px;
+//     }
+
+//     .input {
+//       padding: 15px 10px;
+//       font-size: 0.8em;
+//     }
+//   }
+// `;

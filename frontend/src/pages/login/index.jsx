@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {
-  GlobalStyles,
   MainContainer,
-  HeaderContainer,
   LoginContainer,
   LoginWrapper,
   ForgotPasswordLink,
@@ -13,11 +11,10 @@ import {
   PasswordIcon,
   Input,
   WallpaperContainer,
-  MediaQueryStyles,
 } from "./style";
 import Banner from "../../assets/image/valorant.png";
-import Logoff from "../../assets/image/logoff.png";
 import Logo from "../../assets/image/logoQuery.svg";
+import Footer from "../../components/footer/footer";
 
 const Login = () => {
   const login = () => {
@@ -49,17 +46,8 @@ const Login = () => {
     }
   };
 
-  const goBack = () => {
-    window.history.back();
-  };
-
   return (
     <>
-      <GlobalStyles />
-      <HeaderContainer>
-        <img src={Logoff} alt="" className="btn-back" onClick={goBack} />
-      </HeaderContainer>
-
       <MainContainer>
         <LoginContainer>
           <LoginWrapper>
@@ -98,7 +86,7 @@ const Login = () => {
         </WallpaperContainer>
       </MainContainer>
 
-      <MediaQueryStyles />
+      <Footer />
     </>
   );
 };
