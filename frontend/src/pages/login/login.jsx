@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   GlobalStyles,
   MainContainer,
@@ -13,7 +14,10 @@ import {
   Input,
   WallpaperContainer,
   MediaQueryStyles,
-} from "./login"; 
+} from "./style";
+import Banner from "../../assets/image/valorant.png";
+import Logoff from "../../assets/image/logoff.png";
+import Logo from "../../assets/image/logoQuery.svg";
 
 const Login = () => {
   const login = () => {
@@ -53,22 +57,13 @@ const Login = () => {
     <>
       <GlobalStyles />
       <HeaderContainer>
-        <img
-          src="../assets/image/logoff.png"
-          alt=""
-          className="btn-back"
-          onClick={goBack}
-        />
+        <img src={Logoff} alt="" className="btn-back" onClick={goBack} />
       </HeaderContainer>
 
       <MainContainer>
         <LoginContainer>
           <LoginWrapper>
-            <img
-              src="../assets/image/logoQuery.svg"
-              alt="QueryGames Logo"
-              className="logo"
-            />
+            <img src={Logo} alt="QueryGames Logo" className="logo" />
             <h1>ENTRAR</h1>
 
             <InputBox>
@@ -92,13 +87,14 @@ const Login = () => {
             <ForgotPasswordLink href="#">Esqueceu a senha?</ForgotPasswordLink>
 
             <Button onClick={login}>Entrar</Button>
-
-            <SignUpLink href="../pages/cadastro.html">Cadastre-se</SignUpLink>
+            <Link to="/cadastro">
+              <SignUpLink>Cadastre-se</SignUpLink>
+            </Link>
           </LoginWrapper>
         </LoginContainer>
 
         <WallpaperContainer>
-          <img src="../assets/image/valorant.png" alt="" />
+          <img src={Banner} alt="" />
         </WallpaperContainer>
       </MainContainer>
 

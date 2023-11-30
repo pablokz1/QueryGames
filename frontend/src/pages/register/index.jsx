@@ -6,7 +6,7 @@ import {
   BoxText,
   WallpaperSection,
   Button,
-} from "./register";
+} from "./style";
 import Footer from "../../components/footer/footer";
 
 const Register = () => {
