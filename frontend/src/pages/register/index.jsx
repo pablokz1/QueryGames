@@ -51,9 +51,9 @@ const Register = () => {
               <InputBox>
                 <Input
                   type="text"
-                  name="username"
+                  name="name"
                   placeholder="Nome completo"
-                  value={formData.username}
+                  value={formData.name}
                   onChange={handleChange}
                 />
               </InputBox>
@@ -69,8 +69,8 @@ const Register = () => {
               <InputBox>
                 <Input
                   type="date"
-                  name="data"
-                  value={formData.data}
+                  name="dateOfBirth"
+                  value={formData.dateOfBirth}
                   onChange={handleChange}
                 />
               </InputBox>
