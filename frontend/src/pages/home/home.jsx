@@ -3,7 +3,8 @@ import { Container,ContainerText } from "./style";
 import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/Form";
 import { IoMdSearch } from "react-icons/io";
-import FeaturedGames from '../../components/featuredGames/featuredGames'
+import FeaturedGames from '../../components/featuredGames/featuredGames';
+import BestReviews from '../../components/bestReviews/bestReviews'
 
 export default function Home() {
   return (
@@ -30,9 +31,10 @@ export default function Home() {
         </ContainerText>
       </Container>
       
-      <FeaturedGames>
+      <FeaturedGames />
 
-      </FeaturedGames>
+      <BestReviews />
+
     </section>
   );
 }
