@@ -69,7 +69,6 @@ export const Button = styled.button`
   background-color: #262626;
   color: white;
   border: none;
-  margin-bottom: 50px;
 
   &:hover {
     background-color: #fec163;
@@ -79,16 +78,24 @@ export const Button = styled.button`
 `;
 
 export const WallpaperContainer = styled.section`
-img {
-  height: 100%;
-  width: auto;
-  display: block;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  flex: 1;
+  img {
+    height: 100%;
+    width: auto;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex: 1;
 
-  @media (max-width: 768px) {
-    display: none;
-}
+    @media (max-width: 768px) {
+      display: none;
+  }
+`;
+
+export const Form = styled.form`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;

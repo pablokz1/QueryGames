@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import {
   MainContainer,
   RegisterSection,
@@ -7,6 +8,7 @@ import {
   Input,
   Button,
   WallpaperContainer,
+  Form
 } from "./style";
 import Logo from "../../assets/image/logoQuery.svg";
 import Banner from "../../assets/image/valorant.png";
@@ -19,6 +21,7 @@ const Register = () => {
     email: "",
     dateOfBirth: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -32,11 +35,50 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.dateOfBirth ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Campos obrigatórios",
+        text: "Por favor, preencha todos os campos.",
+      });
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Senhas não coincidem",
+        text: "Por favor, verifique a confirmação da senha.",
+      });
+      return;
+    }
+
     try {
-      const response = await api.post('users', { formData })
-      console.log(response.data)
+      const response = await api.post("users", formData);
+      console.log(response.data);
+
+      Swal.fire({
+        icon: "success",
+        title: "Usuário Criado com Sucesso",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        window.location.reload();
+      });
     } catch (error) {
       console.error(error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao criar usuário",
+        text: "Por favor, verifique os dados e tente novamente.",
+      });
     }
   };
 
@@ -47,7 +89,7 @@ const Register = () => {
           <Wrapper>
             <img src={Logo} alt="Logo" />
             <h1>CADASTRE-SE</h1>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <InputBox>
                 <Input
                   type="text"
@@ -83,7 +125,7 @@ const Register = () => {
                   onChange={handleChange}
                 />
               </InputBox>
-              {/* <InputBox>
+              <InputBox>
                 <Input
                   type="password"
                   name="confirmPassword"
@@ -91,9 +133,9 @@ const Register = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                 />
-              </InputBox> */}
-            </form>
-              <Button onClick={handleSubmit}>Cadastrar</Button>
+              </InputBox>
+              <Button type="submit">Cadastrar</Button>
+            </Form>
           </Wrapper>
         </RegisterSection>
         <WallpaperContainer>
