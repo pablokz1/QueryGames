@@ -8,7 +8,7 @@ import {
   Input,
   Button,
   WallpaperContainer,
-  Form
+  Form,
 } from "./style";
 import Logo from "../../assets/image/logoQuery.svg";
 import Banner from "../../assets/image/valorant.png";
@@ -45,7 +45,7 @@ const Register = () => {
       Swal.fire({
         icon: "error",
         title: "Campos obrigatórios",
-        text: "Por favor, preencha todos os campos.",
+        text: "Por favor, preencha corretamente todos os campos.",
       });
       return;
     }
@@ -59,13 +59,22 @@ const Register = () => {
       return;
     }
 
+    if (formData.password.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "Senha muito curta",
+        text: "A senha deve ter no mínimo 8 caracteres.",
+      });
+      return;
+    }
+
     try {
       const response = await api.post("users", formData);
       console.log(response.data);
 
       Swal.fire({
         icon: "success",
-        title: "Usuário Criado com Sucesso",
+        title: "Cadastro Realizado com Sucesso",
         showConfirmButton: false,
         timer: 1500,
       }).then(() => {
