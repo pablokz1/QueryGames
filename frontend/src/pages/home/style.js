@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import backgroundImage from "../../assets/image/stadiumImage.webp";
 
 export const Container = styled.section`

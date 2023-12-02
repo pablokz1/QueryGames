@@ -14,7 +14,7 @@ import {
 } from "./style";
 import Banner from "../../assets/image/valorant.png";
 import Logo from "../../assets/image/logoQuery.svg";
-import Footer from "../../components/footer/footer";
+import Footer from "../../components/footer/index";
 
 const Login = () => {
   const login = () => {
@@ -75,7 +75,7 @@ const Login = () => {
             <ForgotPasswordLink href="#">Esqueceu a senha?</ForgotPasswordLink>
 
             <Button onClick={login}>Entrar</Button>
-            <Link to="/cadastro">
+            <Link to="/register">
               <SignUpLink>Cadastre-se</SignUpLink>
             </Link>
           </LoginWrapper>

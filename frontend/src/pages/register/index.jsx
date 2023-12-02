@@ -12,7 +12,7 @@ import {
 } from "./style";
 import Logo from "../../assets/image/logoQuery.svg";
 import Banner from "../../assets/image/valorant.png";
-import Footer from "../../components/footer/footer";
+import Footer from "../../components/footer/index";
 import { api } from "../../api/config";
 
 const Register = () => {
