@@ -1,92 +1,97 @@
-import React from "react";
+import React, { useState } from "react";
+import api from "../../api/config";
+import Swal from "sweetalert2";
 import {
-  Container,
-  BackButton,
-  Main,
-  RegisterSection,
-  WallpaperSection,
+  MainContainer,
+  CalatalogContainer,
+  CatalogWrapper,
+  Button,
+  InputBox,
+  Input,
+  WallpaperContainer,
 } from "./style";
+import Banner from "../../assets/image/carroCadastro.png";
+import Header from "../../components/navbar/index";
 import Footer from "../../components/footer/index";
 
 const CatalogPlatform = () => {
-  const catalog = () => {
-    let platform = document.getElementById("platform").value;
-    let gender = document.getElementById("gender").value;
-    let category = document.getElementById("category").value;
-    let game = document.getElementById("game").value;
+  const [formPlatform, setFormGames] = useState({
+    name: "",
+  });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (
-      platform.trim() !== "" &&
-      gender.trim() !== "" &&
-      category.trim() !== "" &&
-      game.trim() !== ""
-    ) {
-      alert("Jogo catalogado");
-      setTimeout(function () {
-        window.location.reload();
-      }, 2000);
-    } else {
-      alert("Preencha todos os campos");
-    }
-  };
-
-  //   PRAQ SERVE ISSO AQUI?
-
-  const handleStarClick = (e) => {
-    var classStar = e.target.classList;
-    if (!classStar.contains("ativo")) {
-      document.querySelectorAll(".star-icon").forEach(function (star) {
-        star.classList.remove("ativo");
+    if (!formPlatform.name) {
+      Swal.fire({
+        icon: "error",
+        title: "Campos obrigatórios",
+        text: "Por favor, preencha corretamente todos os campos.",
       });
-      classStar.add("ativo");
-      console.log(e.target.getAttribute("data-avaliacao"));
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await api.post("platforms", formPlatform, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+
+      Swal.fire({
+        icon: "success",
+        title: "Plataforma cadastrada com Sucesso",
+        showConfirmButton: false,
+        timer: 1500,
+      }).then(() => {
+        window.location.reload();
+      });
+    } catch (error) {
+      console.error("Catalog failed:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Erro ao catalogar jogo",
+        text: `Tente novamenre ${error}`,
+      });
     }
   };
 
-  const goBack = () => {
-    window.history.back();
-  };
+  function handleChangeInput(e) {
+    setFormGames({
+      ...formPlatform,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   return (
-    <Container>
-      <BackButton
-        src="../assets/image/logoff.png"
-        alt=""
-        className="btn-back"
-        onClick={goBack}
-      />
-      <Main>
-        <RegisterSection>
-          <div className="wrapper">
-            <div className="container-user">
-              <img
-                src="../assets/image/profile.png"
-                alt="Profile Logo"
-                className="logo"
-              />
-              <p>Name</p>
-            </div>
-            <h1>Catalogar Plataforma</h1>
-            <label className="box-text">
-              <input
+    <>
+      <Header />
+      <MainContainer>
+        <CalatalogContainer>
+          <CatalogWrapper>
+            <h1>Cadastrar Plataforma</h1>
+            <InputBox>
+              <Input
                 type="text"
-                name="platform"
-                className="input"
-                placeholder="Nome da Plataforma"
-                id="platform"
+                name="name"
+                placeholder="Nome do Jogo"
+                id="game"
+                value={formPlatform.name}
+                onChange={handleChangeInput}
               />
-            </label>
-            <button className="button" onClick={catalog}>
-              Catalogar
-            </button>
-          </div>
-        </RegisterSection>
-        <WallpaperSection>
-          <img src="../assets/image/carroCadastro.png" alt="Wallpaper" />
-        </WallpaperSection>
-      </Main>
+            </InputBox>
+
+            <Button onClick={handleSubmit}>Cadastrar</Button>
+          </CatalogWrapper>
+        </CalatalogContainer>
+        <WallpaperContainer>
+          <img src={Banner} alt="Banner" />
+        </WallpaperContainer>
+      </MainContainer>
       <Footer />
-    </Container>
+    </>
   );
 };
 

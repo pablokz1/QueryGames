@@ -13,9 +13,15 @@ const Header = () => {
     <NavbarLayout>
       <Logo src={logo} alt="logo querygames" />
       <ContainerList>
-      <li><Link to='/userProfile'>Meu Perfil</Link></li>
-        <li><Link to='/catalogGames'>Catalogar Jogo</Link></li>
-        {/* <li><link to=''>Cadastrar Plataforma</link></li> */}
+        <li>
+          <Link to="/userProfile">Meu Perfil</Link>
+        </li>
+        <li>
+          <Link to="/catalogGames">Catalogar Jogo</Link>
+        </li>
+        <li>
+          <Link to="/catalogPlatform">Cadastrar Plataforma</Link>
+        </li>
       </ContainerList>
       <Button onClick={Logout}>Sair</Button>
     </NavbarLayout>

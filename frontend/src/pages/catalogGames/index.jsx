@@ -37,7 +37,12 @@ const CatalogGames = () => {
     }
 
     try {
-      const response = await api.post("games", formGames);
+      const token = localStorage.getItem("token");
+      const response = await api.post("games", formGames, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response);
 
       Swal.fire({
@@ -154,7 +159,6 @@ const CatalogGames = () => {
                   name="categories"
                   onChange={handleChangeInput}
                   value={formGames.categories.map((category) => category.id)}
-                  multiple
                 >
                   <option value="">Categoria</option>
                   {categories.map((categoryItem) => (
