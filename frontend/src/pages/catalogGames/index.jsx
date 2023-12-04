@@ -66,33 +66,23 @@ const CatalogGames = () => {
 
   function handleChangeInput(e) {
     const { name, options } = e.target;
-
+  
     if (name === "categories") {
       const selectedOptions = Array.from(options)
         .filter((option) => option.selected)
         .map((option) => ({
           id: option.value,
         }));
-
-      setFormGames(
-        (prevFormGames) => ({
-          ...prevFormGames,
-          [name]: selectedOptions,
-        }),
-        () => {
-          console.log("formGames", formGames);
-        }
-      );
+  
+      setFormGames((prevFormGames) => ({
+        ...prevFormGames,
+        [name]: selectedOptions,
+      }));
     } else {
-      setFormGames(
-        (prevFormGames) => ({
-          ...prevFormGames,
-          [name]: e.target.value,
-        }),
-        () => {
-          console.log("formGames", formGames);
-        }
-      );
+      setFormGames((prevFormGames) => ({
+        ...prevFormGames,
+        [name]: e.target.value,
+      }));
     }
   }
 
@@ -119,7 +109,8 @@ const CatalogGames = () => {
   useEffect(() => {
     fetchPlatform();
     fetchCategory();
-  }, []);
+    console.log("formGames", formGames);
+  }, [formGames]);
 
   return (
     <>

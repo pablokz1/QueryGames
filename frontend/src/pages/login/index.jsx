@@ -38,9 +38,14 @@ const Login = () => {
 
       navigate("home");
       window.location.reload();
-
     } catch (error) {
       console.error("Login failed:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Erro na Autenticação",
+        text: "Não foi possível autenticar. Por favor, verifique suas credenciais e tente novamente.",
+      });
+      return;
     }
   };
 

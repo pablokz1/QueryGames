@@ -15,21 +15,75 @@ db.serialize(() => {
 
     db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (1, 'Usuário1', 'usuario1@email.com', 'senha123', 1)");
     db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (2, 'Usuário2', 'usuario2@email.com', 'senha456', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (3, 'Usuário3', 'usuario3@email.com', 'senha123', 3)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (4, 'Usuário4', 'usuario4@email.com', 'senha456', 4)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (5, 'Usuário5', 'usuario5@email.com', 'senha123', 5)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (6, 'Usuário6', 'usuario6@email.com', 'senha456', 6)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (7, 'Usuário7', 'usuario7@email.com', 'senha123', 7)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (8, 'Usuário8', 'usuario8@email.com', 'senha456', 8)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (9, 'Usuário9', 'usuario9@email.com', 'senha123', 9)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (10, 'Usuário10', 'usuario10@email.com', 'senha456', 10)");
 
     db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (1, 'PlayStation')");
     db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (2, 'Xbox')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (3, 'Steam')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (4, 'EPICGAMES')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (5, 'GOG')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (6, 'EA Play')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (7, 'Nintendo')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (8, 'Play Story')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (9, 'Aple Story')");
+    db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (10, 'Ubisoft Connect')");
 
     db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (1, 'Jogando')");
     db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (2, 'Zerado')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (3, 'Jogado')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (4, 'Desitido')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (5, 'Não Recomendo')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (6, 'Recomendo')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (7, 'Platinado')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (8, 'Se melhorar, estraga')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (9, 'Pausado')");
+    db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (10, 'Aguardando Lançamento')");
 
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (1, 'Jogo1', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (2, 'Jogo2', 2)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (3, 'Jogo3', 3)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (4, 'Jogo4', 4)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (5, 'Jogo5', 5)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (6, 'Jogo6', 6)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (7, 'Jogo7', 7)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (8, 'Jogo8', 8)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (9, 'Jogo9', 9)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (10, 'Jogo10', 10)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (11, 'Jogo11', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (12, 'Jogo12', 2)");
 
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (2, 2, 2)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (3, 3)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (4, 4)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (5, 5)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (6, 6)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (7, 7)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (8, 8)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (9, 9)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (10, 10)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (11, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (gameId, categoryId) VALUES (12, 2)");
 
     db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (1, 4.5, 'Ótimo jogo!', 1, 1)");
     db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (2, 3.8, 'Divertido, mas poderia ser melhor', 2, 2)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (4.2, 'Muito bom!', 3, 3)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (3.5, 'Interessante, mas precisa de melhorias', 4, 4)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (4.8, 'Incrível!', 5, 5)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (3.0, 'Não gostei muito', 6, 6)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (4.5, 'Recomendo a todos', 7, 7)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (3.7, 'Divertido, mas com algumas falhas', 8, 8)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (4.0, 'Bom jogo!', 9, 9)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (3.9, 'Gostei, mas esperava mais', 10, 10)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (4.5, 'Excelente experiência!', 11, 1)");
+    db.run("INSERT OR IGNORE INTO scores (note, comments, gameId, userId) VALUES (3.2, 'Poderia ser melhor', 12, 2)");
 
     db.run("INSERT OR IGNORE INTO profiles (id, name, alias, description) VALUES (1, 'Administrador', 'adm', 'Perfil master do sistema')");
     db.run("INSERT OR IGNORE INTO profiles (id, name, alias, description) VALUES (2, 'Cliente', 'client', 'Perfil limitado')");

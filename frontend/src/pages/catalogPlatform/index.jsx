@@ -76,7 +76,7 @@ const CatalogPlatform = () => {
               <Input
                 type="text"
                 name="name"
-                placeholder="Nome do Jogo"
+                placeholder="Nome da Plataforma"
                 id="game"
                 value={formPlatform.name}
                 onChange={handleChangeInput}
