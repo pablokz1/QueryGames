@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   MainContainer,
   LoginContainer,
@@ -15,23 +15,33 @@ import {
 import Banner from "../../assets/image/valorant.png";
 import Logo from "../../assets/image/logoQuery.svg";
 import Footer from "../../components/footer/index";
+import api from "../../api/config";
 
 const Login = () => {
-  const login = () => {
-    var emailInput = document.getElementById("email").value;
-    var passwordInput = document.getElementById("password").value;
+  const [formLogin, setFormLogin] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
-    var user = {
-      email: "admin",
-      password: "123456",
-    };
+  const login = async () => {
+    try {
+      if (!formLogin.email || !formLogin.password) {
+        return;
+      }
 
-    if (emailInput !== user.email || passwordInput !== user.password) {
-      alert("Usuário ou senha incorreta!");
-    } else {
-      window.location.href = "../index.html";
+      const response = await api.post("authentication", formLogin);
+      localStorage.setItem("token", response.data.token);
+
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
     }
   };
+
+  function handleChangeInput(e) {
+    setFormLogin({
+      ...formLogin,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   const showPassword = () => {
     var inputPass = document.getElementById("password");
@@ -46,6 +56,13 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
+
   return (
     <>
       <MainContainer>
@@ -55,7 +72,14 @@ const Login = () => {
             <h1>ENTRAR</h1>
 
             <InputBox>
-              <Input type="text" name="email" placeholder="email" id="email" />
+              <Input
+                type="text"
+                name="email"
+                placeholder="email"
+                id="email"
+                value={formLogin.email}
+                onChange={handleChangeInput}
+              />
             </InputBox>
 
             <InputBox>
@@ -64,6 +88,8 @@ const Login = () => {
                 name="password"
                 placeholder="Senha"
                 id="password"
+                value={formLogin.password}
+                onChange={handleChangeInput}
               />
               <PasswordIcon
                 className="bi bi-eye-fill"

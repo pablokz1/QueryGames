@@ -1,58 +1,33 @@
 import React from "react";
-import { GlobalStyle, ContainerUser, Section } from "./userProfile"; 
+import { GlobalStyle, ContainerUser, Section } from "./style";
+import Logoff from "../../assets/image/logoff.png";
 
 function UserProfile() {
-  const notice = () => {
-    alert(
-      "Desculpe, mas esta funcionalidade ainda não está disponível. Estamos trabalhando nisso e ela será implementada em uma próxima atualização. Agradecemos pela sua compreensão e paciência!"
-    );
-  };
-  const goBack = () => {
-    window.history.back();
-  };
   return (
     <>
       <GlobalStyle />
       <div>
-        <nav className="conteiner-user">
+        <nav>
           <ContainerUser>
-            <div className="profile-user">
-              <img
-                src="../assets/image/profile.png"
-                alt=""
-                className="image-user"
-              />
-              <div className="data-user">
+            <div>
+              <img src="../assets/image/profile.png" alt="" />
+              <div>
                 <p1>Ola, name</p1> <br />
                 <p2>user@gmail.com</p2>
               </div>
             </div>
 
-            <a href="./catalogGames.html">
-              <button className="btn-catalog-game">Catalogar jogo</button>
-            </a>
+            <button>Catalogar jogo</button>
 
-            <a href="./catalogPlatform.html">
-              <button className="btn-catalog-game">Catalogar plataforma</button>
-            </a>
+            <button>Catalogar plataforma</button>
 
-            <div className="btns">
-              <div className="config">
-                <img
-                  src="../assets/image/config.png"
-                  alt=""
-                  className="btn-config"
-                  onClick={notice()}
-                />
+            <div>
+              <div>
+                <img src="../assets/image/config.png" alt="" />
               </div>
 
               <div className="logoff">
-                <img
-                  src="../assets/image/logoff.png"
-                  alt=""
-                  className="btn-back"
-                  onClick={goBack}
-                />
+                <img src={Logoff} alt="" />
               </div>
             </div>
           </ContainerUser>
