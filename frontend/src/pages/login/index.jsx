@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   MainContainer,
   LoginContainer,
@@ -24,13 +25,20 @@ const Login = () => {
   const login = async () => {
     try {
       if (!formLogin.email || !formLogin.password) {
+        Swal.fire({
+          icon: "error",
+          title: "Campos obrigatórios",
+          text: "Por favor, preencha corretamente todos os campos.",
+        });
         return;
       }
 
       const response = await api.post("authentication", formLogin);
       localStorage.setItem("token", response.data.token);
 
-      navigate("/home");
+      navigate("home");
+      window.location.reload();
+
     } catch (error) {
       console.error("Login failed:", error);
     }
@@ -59,7 +67,7 @@ const Login = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      navigate("/home");
+      navigate("home");
     }
   }, []);
 

@@ -17,11 +17,13 @@ async function getById(req, res) {
 
 async function post(req, res) {
     const game = await gameRepository.insert(req.body);
-    const categories = req.body.categories;
-    categories.forEach(async (category) => {
-        await gameCategoryRepository.insert(game.id, category.id);  
-    });
-    game['categories'] = await gameCategoryRepository.findByGameId(game.id);
+    if (game){
+        const categories = req.body.categories ;
+        categories.forEach(async (category) => {
+            await gameCategoryRepository.insert(game.id, category.id);  
+        });
+        game['categories'] = await gameCategoryRepository.findByGameId(game.id);
+    }
     res.status(201).json(game);
 }
 

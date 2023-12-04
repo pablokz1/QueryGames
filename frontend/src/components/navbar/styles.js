@@ -31,3 +31,38 @@ export const Button = styled.button`
     cursor: pointer;
   }
 `;
+
+export const ContainerList = styled.ul`
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  list-style: none;
+
+  li {
+    color: white;
+    font-size: 10px;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: 400px;
+      font-size: 15px;
+      text-align: center;
+
+      &:visited {
+        color: white;
+      }
+
+      &:hover {
+        text-decoration: underline;
+        text-decoration-color: #f2bf5e;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;

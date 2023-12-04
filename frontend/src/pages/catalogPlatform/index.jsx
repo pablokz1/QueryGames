@@ -5,8 +5,8 @@ import {
   Main,
   RegisterSection,
   WallpaperSection,
-} from "./catalogPlatform";
-import Footer from "../../components/footer/footer";
+} from "./style";
+import Footer from "../../components/footer/index";
 
 const CatalogPlatform = () => {
   const catalog = () => {

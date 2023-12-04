@@ -32,8 +32,8 @@ async function findById(id) {
 
 async function insert(game) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO games(name, gender, platformId) VALUES(?, ?, ?)');
-        stmt.bind([game.name, game.gender, game.platformId]);
+        const stmt = db.prepare('INSERT INTO games(name, platformId) VALUES(?, ?)');
+        stmt.bind([game.name, game.platformId]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with insert game!');
@@ -51,8 +51,8 @@ async function insert(game) {
 
 async function update(game) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE games set name = ?, gender = ?,  platformId = ? WHERE id = ?');
-        stmt.bind([game.name, game.gender, game.platformId, game.id]);
+        const stmt = db.prepare('UPDATE games set name = ?,  platformId = ? WHERE id = ?');
+        stmt.bind([game.name, game.platformId, game.id]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with update game!');

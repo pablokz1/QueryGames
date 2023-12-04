@@ -3,6 +3,7 @@ import Login from "../pages/login/index";
 import Register from "../pages/register/index";
 import Home from "../pages/home/index";
 import UserProfile from "../pages/userProfile/index";
+import CatalogGames from "../pages/catalogGames/index"
 
 const isAuthenticated = localStorage.getItem('token');
 
@@ -25,6 +26,7 @@ function RouterMain() {
       <Route
         path="/userProfile" element={<PrivateRoute element={<UserProfile />} />}
       />
+      <Route path="/catalogGames" element={<PrivateRoute element={<CatalogGames />} />} />
       <Route path="*" element={<h1>Hello World</h1>} />
     </Routes>
   );

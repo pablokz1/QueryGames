@@ -32,7 +32,7 @@ routes.delete('/categories/:id', authenticationController.verifyToken, categoryR
 
 routes.get('/games', gameRepository.get);
 routes.get('/games/:id', gameRepository.getById);
-routes.post('/games', authenticationController.verifyToken, gameRepository.post);
+routes.post('/games', gameRepository.post);
 routes.put('/games/:id', authenticationController.verifyToken, gameRepository.putById);
 routes.delete('/games/:id', authenticationController.verifyToken, gameRepository.deleteById);
 
