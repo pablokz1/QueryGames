@@ -37,7 +37,7 @@ function verifyToken(req, res, next) {
         req.logged = {
             id: decoded.userId,
             name: decoded.username,
-            profile: decoded.profile
+            profile: decoded.profile,
         };
         next();
     });

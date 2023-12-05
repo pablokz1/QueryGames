@@ -1,39 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
-
-export const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-  }
-
-  ::-webkit-scrollbar {
-    height: 12px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #f1bf5e;
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background-color: #262626;
-  }
-
-  body {
-    background-color: #262626;
-    scrollbar-width: thin;
-    scrollbar-color: #f1bf5e #595959;
-  }
-
-  body::-webkit-scrollbar-thumb {
-    background-color: #f1bf5e;
-  }
-
-  body::-webkit-scrollbar-track {
-    background-color: #262626;
-  }
-`;
+import styled from "styled-components";
+import { Table } from "react-bootstrap";
 
 export const ContainerUser = styled.div`
   width: 96.5%;
@@ -226,3 +192,33 @@ export const Section = styled.section`
   }
 `;
 
+export const Button = styled.button`
+  background: #d9d0c7;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-family: "Open Sans";
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  letter-spacing: 0em;
+  margin-right: 20px;
+  float: right;
+  clear: both;
+  margin-top: 10px;
+
+  &:hover {
+    background-color: #f1bf5e;
+    cursor: pointer;
+  }
+`;
+
+export const CustomTable = styled(Table)`
+  color: #f1bf5e;
+  width: 100%;
+
+  th,
+  td {
+    border: 2px solid #d9d0c7;
+  }
+`;

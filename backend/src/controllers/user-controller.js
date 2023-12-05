@@ -15,13 +15,27 @@ async function get(req, res) {
 }
 
 async function getById(req, res) {
-    const user = await userRepository.findById(req.params.id);
-    if (user.profileId !== null) {
+    try {
+      const user = await userRepository.findById(req.params.id);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      if (user.profileId !== null) {
         const profile = await profileRepository.findById(user.profileId);
-        user['profile'] = profile.name;
+        if (profile) {
+          user['profile'] = profile.name;
+        } else {
+          console.warn(`Profile not found for ID ${user.profileId}`);
+          user['profile'] = "Profile not found";
+        }
+      }
+      res.json(user);
+    } catch (error) {
+      console.error("Error getting user by ID", error);
+      res.status(500).json({ error: "Internal server error" });
     }
-    res.json(user);
-}
+  }
+  
 
 async function post(req, res) {
     try {
