@@ -108,18 +108,12 @@ function UserProfile() {
       <Header />
       <div>
         <nav>
-          <Button onClick={handleEditButtonClick}>Editar Perfil</Button>
           <ContainerUser>
             <div>
-              <p>Ola, {userData.name}</p> <br />
+              <p>Olá, {userData.name}</p> <br />
               <p>{userData.email}</p>
             </div>
           </ContainerUser>
-          {isModalOpen && (
-            <Modal onClose={handleModalClose}>
-              <Button onClick={handleModalClose}>Fechar Modal</Button>
-            </Modal>
-          )}
         </nav>
 
         <Section>

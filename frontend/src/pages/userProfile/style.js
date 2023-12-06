@@ -100,14 +100,9 @@ export const Button = styled.button`
   padding: 10px 20px;
   border-radius: 25px;
   font-family: "Open Sans";
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 25px;
-  letter-spacing: 0em;
-  margin-right: 20px;
-  float: right;
-  clear: both;
-  margin-top: 10px;
+  margin: 5px;
 
   &:hover {
     background-color: #f1bf5e;
