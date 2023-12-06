@@ -48,18 +48,18 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (9, 'Pausado')");
     db.run("INSERT OR IGNORE INTO categories (id, name) VALUES (10, 'Aguardando Lançamento')");
 
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (1, 'Jogo1', 1)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (2, 'Jogo2', 2)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (3, 'Jogo3', 3)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (4, 'Jogo4', 4)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (5, 'Jogo5', 5)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (6, 'Jogo6', 6)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (7, 'Jogo7', 7)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (8, 'Jogo8', 8)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (9, 'Jogo9', 9)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (10, 'Jogo10', 10)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (11, 'Jogo11', 1)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (12, 'Jogo12', 2)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (1, 'GTA V', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (2, 'FC24', 2)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (3, 'CS GO 2', 3)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (4, 'Diablo IV', 5)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (5, 'Minecraft', 8)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (6, 'Fortnite', 6)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (7, 'Mario Kart', 7)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (8, 'League Of Legends', 4)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (9, 'Free Fire', 9)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (10, 'The Division 2', 10)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (11, 'God Of War', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (12, 'Halo Infinit', 2)");
 
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (2, 2, 2)");
