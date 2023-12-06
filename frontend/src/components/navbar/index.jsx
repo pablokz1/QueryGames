@@ -56,7 +56,7 @@ const Header = () => {
         </li>
       </ContainerList>
         <p><i class="bi bi-person-fill"></i> Olá, {userData.name}</p> <br />
-      <Button onClick={Logout}>Sair</Button>
+      <Button onClick={Logout}><i class="bi bi-arrow-bar-right"></i> Sair</Button>
     </NavbarLayout>
   );
 };

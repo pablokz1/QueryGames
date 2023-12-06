@@ -14,6 +14,11 @@ async function getById(req, res) {
     res.json(score);
 }
 
+async function getByGameId(req, res) {
+    const score = await scoreRepository.findByGameId(req.params.id);
+    res.json(score);
+}
+
 async function post(req, res) {
     const score = await scoreRepository.insert(req.body);
     res.status(201).json(score);
@@ -39,4 +44,4 @@ async function deleteById(req, res) {
     res.status(204).json()
 }
 
-module.exports = { get, getById, post, putById, deleteById };
+module.exports = { get, getById, getByGameId, post, putById, deleteById };

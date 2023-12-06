@@ -77,7 +77,7 @@ export const Section = styled.section`
   border-radius: 10px;
   background-color: #0d0d0d;
   width: 100%;
-  min-height: 30em;
+  min-height: 100vh;
   padding-bottom: 50px;
 
   h1 {

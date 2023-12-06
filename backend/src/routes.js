@@ -39,6 +39,7 @@ routes.delete('/games/:id', authenticationController.verifyToken, gameRepository
 
 routes.get('/scores', scoreRepository.get);
 routes.get('/scores/:id', scoreRepository.getById);
+routes.get('/scores/games/:id', scoreRepository.getByGameId);
 routes.post('/scores', authenticationController.verifyToken, scoreRepository.post);
 routes.put('/scores/:id', authenticationController.verifyToken, scoreRepository.putById);
 routes.delete('/scores/:id', authenticationController.verifyToken, scoreRepository.deleteById);

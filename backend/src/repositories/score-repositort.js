@@ -48,6 +48,20 @@ async function findById(id) {
     });
 }
 
+async function findByGameId(gameId) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('SELECT * FROM scores WHERE gameId = ?', [gameId]);
+        stmt.get((err, row) => {
+            if (err) {
+                console.error('Occurred an error with find score by gameId!');
+                reject(err);
+            }
+            resolve(row);
+        });
+        stmt.finalize();
+    });
+}
+
 async function insert(score) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('INSERT INTO scores(note, comments, gameId, userId) VALUES(?, ?, ?, ?)');
@@ -97,4 +111,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findAllByGameId, findById, insert, update, deleteById};
+module.exports = {findAll, findAllByGameId, findById, findByGameId, insert, update, deleteById};

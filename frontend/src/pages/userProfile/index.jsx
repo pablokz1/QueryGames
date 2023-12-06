@@ -10,7 +10,7 @@ import { Rating } from "react-simple-star-rating";
 function UserProfile() {
   const [userData, setUserData] = useState({});
   const [userGames, setUserGames] = useState([]);
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState([]);
 
   function getUserLocalStorage() {
     const token = localStorage.getItem("token");
@@ -83,13 +83,56 @@ function UserProfile() {
     }
   }
 
-   const handleRating = (rate) => {
-    setRating(rate)
-  }
-  
-  const onPointerEnter = () => console.log('Enter')
-  const onPointerLeave = () => console.log('Leave')
-  const onPointerMove = (value, index) => console.log(value, index)
+  const handleTableRowClick = (clickedGameId) => {
+    handleRating(rating, clickedGameId);
+  };
+
+  const handleRating = async (rate, gameId) => {
+    if (rate >= 1 && rate <= 5) {
+      setRating(rate);
+    }
+
+    try {
+      const response = await api.get(`scores/games/${gameId}`);
+
+      if (!response.data) {
+        await api.post(
+          "scores",
+          {
+            note: rate,
+            gameId: gameId,
+            userId: userData.userId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } else {
+        await api.put(
+          `scores/${response.data.id}`,
+          {
+            note: rate,
+            gameId: gameId,
+            userId: userData.userId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      }
+      setRating(rate);
+    } catch (error) {
+      console.error("Erro ao enviar pontuação para a API:", error);
+    }
+  };
+
+  const onPointerEnter = () => console.log("Enter");
+  const onPointerLeave = () => console.log("Leave");
+  const onPointerMove = (value, index) => console.log(value, index);
 
   useEffect(() => {
     getUserLocalStorage();
@@ -107,7 +150,7 @@ function UserProfile() {
       <Section>
         <div>
           <h1>
-            <i class="bi bi-card-list"></i> Meus Jogos
+            <i className="bi bi-card-list"></i> Meus Jogos
           </h1>
           <CustomTable>
             <thead>
@@ -127,11 +170,10 @@ function UserProfile() {
                   <td>{game.category}</td>
                   <td>
                     <Rating
-                      onClick={handleRating}
+                      onClick={(rate) => handleRating(rate, game.id)}
                       onPointerEnter={onPointerEnter}
                       onPointerLeave={onPointerLeave}
                       onPointerMove={onPointerMove}
-                      /* Available Props */
                     />
                   </td>
                   <CustonTd>

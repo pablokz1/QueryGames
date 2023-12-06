@@ -10,7 +10,7 @@ db.serialize(() => {
     db.run('CREATE TABLE IF NOT EXISTS games(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, image TEXT, platformId INTEGER NOT NULL, FOREIGN KEY(platformId) REFERENCES platforms(id))');
     db.run('CREATE TABLE IF NOT EXISTS games_categories(id INTEGER PRIMARY KEY AUTOINCREMENT, gameId INTEGER NOT NULL, categoryId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(categoryId) REFERENCES categories(id))');
     db.run('CREATE TABLE IF NOT EXISTS games_platforms(id INTEGER PRIMARY KEY AUTOINCREMENT, gameId INTEGER NOT NULL, platformId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(platformId) REFERENCES platforms(id))');
-    db.run('CREATE TABLE IF NOT EXISTS scores(id INTEGER PRIMARY KEY AUTOINCREMENT, note FLOAT NOT NULL, comments TEXT, gameId INTEGER NOT NULL, userId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(userId) REFERENCES users(id))');
+    db.run('CREATE TABLE IF NOT EXISTS scores(id INTEGER PRIMARY KEY AUTOINCREMENT, note INTEGER NOT NULL, gameId INTEGER NOT NULL, userId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(userId) REFERENCES users(id))');
     db.run('CREATE TABLE IF NOT EXISTS profiles(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, alias TEXT NOT NULL, description TEXT NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS roles(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, alias TEXT NOT NULL, description TEXT NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS profiles_roles(id INTEGER PRIMARY KEY AUTOINCREMENT, profileId INTEGER NOT NULL, roleId INTEGER NOT NULL, FOREIGN KEY(profileId) REFERENCES profiles(id), FOREIGN KEY(roleId) REFERENCES roles(id))');
@@ -97,18 +97,18 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (11, 11, 1)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (12, 12, 2)");
 
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (1, 4.5, 'Ótimo jogo!', 1, 1)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (2, 3.8, 'Divertido, mas poderia ser melhor', 2, 2)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (3, 4.2, 'Muito bom!', 3, 3)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (4, 3.5, 'Interessante, mas precisa de melhorias', 4, 4)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (5, 4.8, 'Incrível!', 5, 5)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (6, 3.0, 'Não gostei muito', 6, 6)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (7, 4.5, 'Recomendo a todos', 7, 7)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (8, 3.7, 'Divertido, mas com algumas falhas', 8, 8)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (9, 4.0, 'Bom jogo!', 9, 9)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (10, 3.9, 'Gostei, mas esperava mais', 10, 10)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (11, 4.5, 'Excelente experiência!', 11, 1)");
-    db.run("INSERT OR IGNORE INTO scores (id, note, comments, gameId, userId) VALUES (12, 3.2, 'Poderia ser melhor', 12, 2)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (1, 4, 1, 1)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (2, 4, 2, 2)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (3, 4, 3, 3)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (4, 3, 4, 4)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (5, 5, 5, 5)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (6, 3, 6, 6)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (7, 4, 7, 7)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (8, 3, 8, 8)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (9, 4, 9, 9)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (10, 4, 10, 10)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (11, 4, 11, 1)");
+    db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (12, 3, 12, 2)");
 
     db.run("INSERT OR IGNORE INTO profiles (id, name, alias, description) VALUES (1, 'Administrador', 'adm', 'Perfil master do sistema')");
     db.run("INSERT OR IGNORE INTO profiles (id, name, alias, description) VALUES (2, 'Cliente', 'client', 'Perfil limitado')");
