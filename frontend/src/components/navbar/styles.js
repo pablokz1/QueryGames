@@ -7,11 +7,18 @@ export const NavbarLayout = styled.div`
   justify-content: space-between;
   height: 120px;
   width: 100%;
+
+  p{
+    color: #f1bf5e;
+  }
 `;
 
 export const Logo = styled.img`
   width: 13.75em;
   
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Button = styled.button`

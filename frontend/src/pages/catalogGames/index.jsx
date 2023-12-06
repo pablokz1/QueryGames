@@ -43,6 +43,7 @@ const CatalogGames = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+
       console.log(response);
 
       Swal.fire({
@@ -109,7 +110,6 @@ const CatalogGames = () => {
   useEffect(() => {
     fetchPlatform();
     fetchCategory();
-    console.log("formGames", formGames);
   }, [formGames]);
 
   return (

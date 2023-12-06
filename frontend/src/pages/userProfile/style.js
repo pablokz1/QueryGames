@@ -77,13 +77,13 @@ export const Section = styled.section`
   border-radius: 10px;
   background-color: #0d0d0d;
   width: 100%;
-  min-height: 20em;
+  min-height: 30em;
   padding-bottom: 50px;
 
   h1 {
     font-family: Open Sans;
-    font-size: 22px;
-    font-weight: 600;
+    font-size: 35px;
+    font-weight: 700;
     line-height: 30px;
     letter-spacing: 0.02em;
     text-align: center;
@@ -117,6 +117,7 @@ export const CustomTable = styled(Table)`
   th,
   td {
     border: 2px solid #d9d0c7;
+    text-align: center;
   }
 `;
 

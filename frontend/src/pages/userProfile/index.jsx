@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ContainerUser, Section, Button, CustomTable, CustonTd } from "./style";
+import { Section, Button, CustomTable, CustonTd } from "./style";
 import Header from "../../components/navbar";
 import Footer from "../../components/footer";
 import { jwtDecode } from "jwt-decode";
-import Modal from "./Modal";
 import api from "../../api/config";
 import Swal from "sweetalert2";
+import { Rating } from "react-simple-star-rating";
 
 function UserProfile() {
   const [userData, setUserData] = useState({});
   const [userGames, setUserGames] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [rating, setRating] = useState(0)
 
   function getUserLocalStorage() {
     const token = localStorage.getItem("token");
@@ -43,16 +43,6 @@ function UserProfile() {
       console.error("Erro ao obter os jogos do usuário", error);
     }
   }
-
-  const handleEditButtonClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-  };
-
-  function handleEditGame(gameId) {}
 
   async function handleDeleteGame(gameId) {
     try {
@@ -93,6 +83,14 @@ function UserProfile() {
     }
   }
 
+   const handleRating = (rate) => {
+    setRating(rate)
+  }
+  
+  const onPointerEnter = () => console.log('Enter')
+  const onPointerLeave = () => console.log('Leave')
+  const onPointerMove = (value, index) => console.log(value, index)
+
   useEffect(() => {
     getUserLocalStorage();
   }, []);
@@ -106,54 +104,53 @@ function UserProfile() {
   return (
     <>
       <Header />
-      <div>
-        <nav>
-          <ContainerUser>
-            <div>
-              <p>Olá, {userData.name}</p> <br />
-              <p>{userData.email}</p>
-            </div>
-          </ContainerUser>
-        </nav>
-
-        <Section>
-          <div>
-            <h1>Meus Jogos</h1>
-            <CustomTable striped bordered hover variant="dark">
-              <thead>
-                <tr>
-                  <th>Nome do Jogo</th>
-                  <th>Plataforma</th>
-                  <th>Categoria</th>
-                  <th>Score</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {userGames.map((game) => (
-                  <tr key={game.id}>
-                    <td>{game.game}</td>
-                    <td>{game.platform}</td>
-                    <td>{game.category}</td>
-                    <td>teste</td>
-                    <CustonTd>
-                      <Button onClick={() => handleEditGame(game.id)}>
+      <Section>
+        <div>
+          <h1>
+            <i class="bi bi-card-list"></i> Meus Jogos
+          </h1>
+          <CustomTable>
+            <thead>
+              <tr>
+                <th>Nome do Jogo</th>
+                <th>Plataforma</th>
+                <th>Categoria</th>
+                <th>Score</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userGames.map((game) => (
+                <tr key={game.id}>
+                  <td>{game.game}</td>
+                  <td>{game.platform}</td>
+                  <td>{game.category}</td>
+                  <td>
+                    <Rating
+                      onClick={handleRating}
+                      onPointerEnter={onPointerEnter}
+                      onPointerLeave={onPointerLeave}
+                      onPointerMove={onPointerMove}
+                      /* Available Props */
+                    />
+                  </td>
+                  <CustonTd>
+                    {/* <Button onClick={() => handleEditGame(game.id)}>
                         Editar
-                      </Button>
-                      <Button
-                        variant="danger"
-                        onClick={() => handleDeleteGame(game.id)}
-                      >
-                        Excluir
-                      </Button>
-                    </CustonTd>
-                  </tr>
-                ))}
-              </tbody>
-            </CustomTable>
-          </div>
-        </Section>
-      </div>
+                      </Button> */}
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDeleteGame(game.id)}
+                    >
+                      Excluir
+                    </Button>
+                  </CustonTd>
+                </tr>
+              ))}
+            </tbody>
+          </CustomTable>
+        </div>
+      </Section>
 
       <Footer />
     </>
