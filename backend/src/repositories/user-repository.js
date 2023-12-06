@@ -58,6 +58,22 @@ async function findByEmailAndPassword(email, password) {
     });
 }
 
+async function findGamesById(id) {
+    return new Promise((resolve, reject) => {
+        const games = [];
+        db.each(`SELECT G.id, G.name as game, P.name as platform FROM users U INNER JOIN user_games UG ON (U.id = UG.userId) INNER JOIN games G ON(UG.gameId = G.id) LEFT JOIN games_platforms GP ON (G.id = GP.gameId) LEFT JOIN platforms P ON (GP.platformId = P.id) WHERE U.id = ${id}`, (err, row) => {
+            if (err) {
+                console.error('Occurred an error with find all games created from user!');
+                reject(err);
+            }
+            games.push(row);
+        }, (err, count) => {
+            if (err) reject(err);
+            resolve(games);
+        });
+    });
+}
+
 async function insert(user) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('INSERT INTO users(name, email, dateOfBirth, password, profileId) VALUES(?, ?, ?, ?, ?)');
@@ -107,4 +123,4 @@ async function deleteById(id) {
    });
 }
 
-module.exports = {findAll, findById, findByEmail, findByEmailAndPassword, insert, update, deleteById};
+module.exports = {findAll, findById, findByEmail, findByEmailAndPassword, insert, update, deleteById, findGamesById};

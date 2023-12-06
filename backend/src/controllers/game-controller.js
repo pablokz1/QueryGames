@@ -1,5 +1,7 @@
 const gameRepository = require('../repositories/game-repository');
 const gameCategoryRepository = require('../repositories/games_categories-repository')
+const userGameRepository = require('../repositories/user_games-repository');
+const gamePlatformRepository = require('../repositories/games_platforms-repository');
 
 async function get(req, res) {
     const games = await gameRepository.findAll();
@@ -16,6 +18,7 @@ async function getById(req, res) {
 }
 
 async function post(req, res) {
+    const logged = req.logged;
     const game = await gameRepository.insert(req.body);
     if (game){
         const categories = req.body.categories ;
@@ -23,6 +26,8 @@ async function post(req, res) {
             await gameCategoryRepository.insert(game.id, category.id);  
         });
         game['categories'] = await gameCategoryRepository.findByGameId(game.id);
+        userGameRepository.insert(logged.id, game.id);
+        gamePlatformRepository.insert(game.id, game.platformId);
     }
     res.status(201).json(game);
 }

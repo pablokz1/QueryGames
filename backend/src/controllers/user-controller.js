@@ -14,6 +14,11 @@ async function get(req, res) {
     res.json(users);
 }
 
+async function getGamesById(req, res) {
+  const games = await userRepository.findGamesById(req.params.id);
+  res.json(games);
+}
+
 async function getById(req, res) {
     try {
       const user = await userRepository.findById(req.params.id);
@@ -78,4 +83,4 @@ async function deleteById(req, res) {
     res.status(204).json()
 }
 
-module.exports = { get, getById, post, putById, deleteById };
+module.exports = { get, getById, post, putById, deleteById, getGamesById};

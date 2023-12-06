@@ -4,10 +4,12 @@ const db = new sqlite3.Database('QueryGames.db');
 
 db.serialize(() => {
     db.run('CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, email TEXT NOT NULL, image TEXT, dateOfBirth DATE, password TEXT NOT NULL, profileId INTEGER, FOREIGN KEY(profileId) REFERENCES profiles(id))');
+    db.run('CREATE TABLE IF NOT EXISTS user_games(id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER NOT NULL, gameId INTEGER NOT NULL, FOREIGN KEY(userId) REFERENCES users(id), FOREIGN KEY(gameId) REFERENCES games(id))')
     db.run('CREATE TABLE IF NOT EXISTS platforms(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS categories(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS games(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, image TEXT, platformId INTEGER NOT NULL, FOREIGN KEY(platformId) REFERENCES platforms(id))');
     db.run('CREATE TABLE IF NOT EXISTS games_categories(id INTEGER PRIMARY KEY AUTOINCREMENT, gameId INTEGER NOT NULL, categoryId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(categoryId) REFERENCES categories(id))');
+    db.run('CREATE TABLE IF NOT EXISTS games_platforms(id INTEGER PRIMARY KEY AUTOINCREMENT, gameId INTEGER NOT NULL, platformId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(platformId) REFERENCES platforms(id))');
     db.run('CREATE TABLE IF NOT EXISTS scores(id INTEGER PRIMARY KEY AUTOINCREMENT, note FLOAT NOT NULL, comments TEXT, gameId INTEGER NOT NULL, userId INTEGER NOT NULL, FOREIGN KEY(gameId) REFERENCES games(id), FOREIGN KEY(userId) REFERENCES users(id))');
     db.run('CREATE TABLE IF NOT EXISTS profiles(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, alias TEXT NOT NULL, description TEXT NOT NULL)');
     db.run('CREATE TABLE IF NOT EXISTS roles(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, alias TEXT NOT NULL, description TEXT NOT NULL)');
@@ -15,14 +17,14 @@ db.serialize(() => {
 
     db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (1, 'Usuário1', 'usuario1@email.com', 'senha123', 1)");
     db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (2, 'Usuário2', 'usuario2@email.com', 'senha456', 2)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (3, 'Usuário3', 'usuario3@email.com', 'senha123', 3)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (4, 'Usuário4', 'usuario4@email.com', 'senha456', 4)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (5, 'Usuário5', 'usuario5@email.com', 'senha123', 5)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (6, 'Usuário6', 'usuario6@email.com', 'senha456', 6)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (7, 'Usuário7', 'usuario7@email.com', 'senha123', 7)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (8, 'Usuário8', 'usuario8@email.com', 'senha456', 8)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (9, 'Usuário9', 'usuario9@email.com', 'senha123', 9)");
-    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (10, 'Usuário10', 'usuario10@email.com', 'senha456', 10)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (3, 'Usuário3', 'usuario3@email.com', 'senha123', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (4, 'Usuário4', 'usuario4@email.com', 'senha456', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (5, 'Usuário5', 'usuario5@email.com', 'senha123', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (6, 'Usuário6', 'usuario6@email.com', 'senha456', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (7, 'Usuário7', 'usuario7@email.com', 'senha123', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (8, 'Usuário8', 'usuario8@email.com', 'senha456', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (9, 'Usuário9', 'usuario9@email.com', 'senha123', 2)");
+    db.run("INSERT OR IGNORE INTO users (id, name, email, password, profileId) VALUES (10, 'Usuário10', 'usuario10@email.com', 'senha456', 2)");
 
     db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (1, 'PlayStation')");
     db.run("INSERT OR IGNORE INTO platforms (id, name) VALUES (2, 'Xbox')");
@@ -58,6 +60,29 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (10, 'Jogo10', 10)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (11, 'Jogo11', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (12, 'Jogo12', 2)");
+
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (1, 1, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (2, 2, 2)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (3, 3, 3)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (4, 4, 4)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (5, 5, 5)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (6, 6, 6)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (7, 7, 7)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (8, 8, 8)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (9, 9, 9)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (10, 10, 10)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (11, 1, 1)");
+
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (1, 1, 1)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (2, 2, 2)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (3, 3, 3)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (4, 4, 4)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (5, 5, 5)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (6, 6, 6)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (7, 7, 7)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (8, 8, 8)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (9, 9, 9)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (10, 10, 10)");
 
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (2, 2, 2)");

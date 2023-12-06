@@ -13,6 +13,7 @@ const routes = express();
 routes.post('/authentication', authenticationController.postAuth);
 
 routes.get('/users', userController.get);
+routes.get('/users/games/:id', userController.getGamesById);
 routes.get('/users/:id', userController.getById);
 routes.post('/users', userController.post);
 routes.put('/users/:id', authenticationController.verifyToken, userController.putById);
