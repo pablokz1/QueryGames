@@ -2,7 +2,6 @@ const userRepository = require('../repositories/user-repository');
 const profileRepository = require('../repositories/profile-repository');
 const jwt = require('jsonwebtoken');
 
-const ONE_MINUTE = 1000 * 60;
 const SECRET = 'hf293uh4g90234hg92-384hg2-9034nc-742-37c02-734-0239u40-239u0-237u4-023u-450n3h-';
 
 async function postAuth(req, res) {
@@ -17,7 +16,7 @@ async function postAuth(req, res) {
         const profile = await profileRepository.findById(user.profileId);
         profileName = profile.name;
     }
-    const timeExpire = new Date().getTime() + (ONE_MINUTE * 60);
+    const timeExpire = '1h';
     const token = jwt.sign({userId: user.id, username: user.name, profile: profileName}, SECRET, {subject: user.email, issuer: 'Query Games API', expiresIn: timeExpire});
     res.status(200).json({type: 'Bearer', token: token, expire: timeExpire});
 }
