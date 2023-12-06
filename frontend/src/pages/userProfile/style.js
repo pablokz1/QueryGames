@@ -77,7 +77,8 @@ export const Section = styled.section`
   border-radius: 10px;
   background-color: #0d0d0d;
   width: 100%;
-  height: 20em;
+  min-height: 20em;
+  padding-bottom: 50px;
 
   h1 {
     font-family: Open Sans;
@@ -99,7 +100,7 @@ export const Button = styled.button`
   padding: 10px 20px;
   border-radius: 25px;
   font-family: "Open Sans";
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 25px;
   letter-spacing: 0em;
@@ -122,4 +123,10 @@ export const CustomTable = styled(Table)`
   td {
     border: 2px solid #d9d0c7;
   }
+`;
+
+export const CustonTd = styled.td`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
