@@ -4,10 +4,11 @@ import Header from "../../components/navbar";
 import Footer from "../../components/footer";
 import { jwtDecode } from "jwt-decode";
 import Modal from "./Modal";
-
+import api from "../../api/config";
 
 function UserProfile() {
   const [userData, setUserData] = useState({});
+  const [userGames, setUserGames] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   function getUserLocalStorage() {
@@ -16,10 +17,11 @@ function UserProfile() {
       try {
         const decoded = jwtDecode(token);
         if (decoded) {
-          const { username: name, sub: email } = decoded;
+          const { username: name, sub: email, userId: userId } = decoded;
           setUserData({
             name,
             email,
+            userId,
           });
         } else {
           console.error("Erro ao decodificar o token");
@@ -29,6 +31,15 @@ function UserProfile() {
       }
     } else {
       console.error("Token não encontrado no Local Storage");
+    }
+  }
+
+  async function getUserGames(userId) {
+    try {
+      const response = await api.get(`/users/games/${userId}`);
+      setUserGames(response.data);
+    } catch (error) {
+      console.error("Erro ao obter os jogos do usuário", error);
     }
   }
 
@@ -43,6 +54,12 @@ function UserProfile() {
   useEffect(() => {
     getUserLocalStorage();
   }, []);
+
+  useEffect(() => {
+    if (userData.userId) {
+      getUserGames(userData.userId);
+    }
+  }, [userData]);
 
   return (
     <>
@@ -72,14 +89,18 @@ function UserProfile() {
                   <th>Nome do Jogo</th>
                   <th>Plataforma</th>
                   <th>Categoria</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
+                {userGames.map((game) => (
+                  <tr key={game.id}>
+                    <td>{game.game}</td>
+                    <td>{game.platform}</td>
+                    <td>{game.category}</td>
+                    <td>....</td>
+                  </tr>
+                ))}
               </tbody>
             </CustomTable>
           </div>

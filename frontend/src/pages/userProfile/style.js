@@ -77,6 +77,7 @@ export const Section = styled.section`
   border-radius: 10px;
   background-color: #0d0d0d;
   width: 100%;
+  height: 20em;
 
   h1 {
     font-family: Open Sans;
@@ -84,111 +85,11 @@ export const Section = styled.section`
     font-weight: 600;
     line-height: 30px;
     letter-spacing: 0.02em;
-    text-align: left;
+    text-align: center;
     color: #d9d0c7;
     padding: 10px;
     margin-left: 20px;
-  }
-
-  .my-list {
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory;
-  }
-
-  .games {
-    display: flex;
-    gap: 20px;
-    scroll-behavior: smooth;
-    width: 100%;
-    flex-wrap: nowrap;
-
-    > div {
-      border-radius: 8px;
-      color: #fff;
-      flex: 0 0 auto;
-      padding: 10px;
-      scroll-snap-align: start;
-      text-align: center;
-      width: 25%;
-      height: 25em;
-
-      img {
-        max-width: 70%;
-        height: 80%;
-        border-radius: 8px;
-        margin-bottom: 10px;
-
-        &:hover {
-          border: 2px solid #f1bf5e;
-        }
-      }
-    }
-  }
-
-  .box-text {
-    font-family: Open Sans;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 30px;
-    letter-spacing: 0.02em;
-    text-align: left;
-    padding: 10px;
-    background: transparent;
-    border: none;
-
-    select {
-      color: #d9d0c7;
-      font-family: Open Sans;
-      font-size: 22px;
-      font-weight: 600;
-      line-height: 30px;
-      letter-spacing: 0.02em;
-      text-align: left;
-      padding: 10px;
-      background: transparent;
-      border: none;
-      margin-left: 10px;
-    }
-
-    option {
-      color: #0d0d0d;
-    }
-  }
-
-  @media (max-width: 768px) {
-    ${ContainerUser} {
-      margin: 20px 0;
-      width: 100%;
-
-      .image-user {
-        width: 60px;
-      }
-
-      .data-user p1 {
-        font-size: 16px;
-      }
-
-      .data-user p2 {
-        font-size: 13px;
-      }
-
-      .btn-register-game {
-        background-color: #262626;
-        color: #d9d0c7;
-        border-radius: 4px;
-        width: 102px;
-        height: 25px;
-        font-size: 10px;
-      }
-
-      .btn-config {
-        display: none;
-      }
-    }
-
-    overflow-x: auto;
-    white-space: nowrap;
+    margin-bottom: 30px;
   }
 `;
 
