@@ -8,20 +8,24 @@ export const NavbarLayout = styled.div`
   height: 120px;
   width: 100%;
 
-  p{
+  p {
     color: #f1bf5e;
+  }
+
+  @media (max-width: 768px) {
+    height: 180px;
   }
 `;
 
 export const Logo = styled.img`
   width: 13.75em;
-  
+
   &:hover {
     cursor: pointer;
   }
 
   @media (max-width: 768px) {
-     width: 150px;
+    width: 150px;
   }
 `;
 
@@ -30,7 +34,7 @@ export const Button = styled.button`
   border: none;
   padding: 10px 20px;
   border-radius: 25px;
-  font-family: 'Open Sans';
+  font-family: "Open Sans";
   font-size: 18px;
   font-weight: 700;
   line-height: 25px;
@@ -79,6 +83,10 @@ export const ContainerList = styled.ul`
   }
 
   @media (max-width: 768px) {
-    display: none;
-  }
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 20px;
+    position: absolute;
+    top: 15%;
 `;

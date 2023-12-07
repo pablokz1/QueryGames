@@ -111,8 +111,6 @@ const Login = () => {
               />
             </InputBox>
 
-            <ForgotPasswordLink href="#">Esqueceu a senha?</ForgotPasswordLink>
-
             <Button onClick={login}>Entrar</Button>
             <Link to="/register">
               <SignUpLink>Cadastre-se</SignUpLink>

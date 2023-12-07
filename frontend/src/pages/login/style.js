@@ -68,17 +68,19 @@ export const Button = styled.button`
 `;
 
 export const SignUpLink = styled.a`
-  font-size: 10px;
-  font-weight: 600;
-  line-height: 30px;
-  letter-spacing: 0.02em;
-  text-align: left;
-  color: #d9d0c7;
-  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: 400px;
+  font-size: 15px;
+  text-align: center;
+
+  &:visited {
+    color: white;
+  }
 
   &:hover {
-    color: #f1bf5e;
-    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #f2bf5e;
   }
 `;
 
