@@ -6,36 +6,41 @@ import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
   const [userData, setUserData] = useState({});
+  const [firstName, setFirstName] = useState("");
 
   const Logout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
 
-  function getUserLocalStorage() {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        if (decoded) {
-          const { username: name, sub: email, userId: userId } = decoded;
-          setUserData({
-            name,
-            email,
-            userId,
-          });
-        } else {
-          console.error("Erro ao decodificar o token");
-        }
-      } catch (error) {
-        console.error("Erro ao decodificar o token", error);
-      }
-    } else {
-      console.error("Token não encontrado no Local Storage");
-    }
-  }
-
   useEffect(() => {
+    function getUserLocalStorage() {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          if (decoded) {
+            const { username: name, sub: email, userId: userId } = decoded;
+            setUserData({
+              name,
+              email,
+              userId,
+            });
+            
+            const fullName = name || "";
+            const first = fullName.split(" ")[0];
+            setFirstName(first);
+          } else {
+            console.error("Erro ao decodificar o token");
+          }
+        } catch (error) {
+          console.error("Erro ao decodificar o token", error);
+        }
+      } else {
+        console.error("Token não encontrado no Local Storage");
+      }
+    }
+
     getUserLocalStorage();
   }, []);
 
@@ -55,8 +60,12 @@ const Header = () => {
           <Link to="/catalogPlatform">Cadastrar Plataforma</Link>
         </li>
       </ContainerList>
-        <p><i class="bi bi-person-fill"></i> Olá, {userData.name}</p> <br />
-      <Button onClick={Logout}><i class="bi bi-arrow-bar-right"></i> Sair</Button>
+      <p>
+        <i className="bi bi-person-fill"></i> Olá, {firstName}
+      </p>
+      <Button onClick={Logout}>
+        <i className="bi bi-arrow-bar-right"></i> Sair
+      </Button>
     </NavbarLayout>
   );
 };

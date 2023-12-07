@@ -108,6 +108,12 @@ export const Button = styled.button`
     background-color: #f1bf5e;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 12px;
+  }
 `;
 
 export const CustomTable = styled(Table)`
@@ -118,6 +124,10 @@ export const CustomTable = styled(Table)`
   td {
     border: 2px solid #d9d0c7;
     text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
   }
 `;
 

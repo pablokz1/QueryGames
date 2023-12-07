@@ -60,9 +60,15 @@ export const Input = styled.input`
   color: #595959;
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+`;
+
 export const Button = styled.button`
   font-weight: 600;
-  width: 146px;
+  width: 120px;
   height: 36px;
   padding: 5px;
   border-radius: 4px;

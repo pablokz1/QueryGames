@@ -19,6 +19,10 @@ export const Logo = styled.img`
   &:hover {
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+     width: 150px;
+  }
 `;
 
 export const Button = styled.button`
@@ -36,6 +40,11 @@ export const Button = styled.button`
   &:hover {
     background-color: #f1bf5e;
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    font-size: 12px;
   }
 `;
 

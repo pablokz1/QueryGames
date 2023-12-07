@@ -59,7 +59,6 @@ function UserProfile() {
       console.error("Erro ao obter os jogos do usuário", error);
     }
   }
-  
 
   async function handleDeleteGame(gameId) {
     try {
@@ -170,14 +169,12 @@ function UserProfile() {
                   <td>{game.category}</td>
                   <td>
                     <Rating
+                    size={14}
                       initialValue={game.note}
                       onClick={(rate) => handleRating(rate, game.id)}
                     />
                   </td>
                   <CustonTd>
-                    {/* <Button onClick={() => handleEditGame(game.id)}>
-                        Editar
-                      </Button> */}
                     <Button
                       variant="danger"
                       onClick={() => handleDeleteGame(game.id)}

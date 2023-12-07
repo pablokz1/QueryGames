@@ -29,6 +29,16 @@ export const CatalogWrapper = styled.div`
     margin-top: 50px;
     letter-spacing: 7px;
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      text-align: center;
+      font-size: 24px; 
+      margin-bottom: 10px;
+      margin-top: 10px;   
+      letter-spacing: 4px;
+    }
+  }
 `;
 
 export const Button = styled.button`
@@ -55,6 +65,11 @@ export const InputBox = styled.label`
   display: block;
   margin-bottom: 30px;
   position: relative;
+
+  @media (max-width: 768px) {
+    width: 100%; 
+    max-width: 280px;
+  }
 `;
 
 export const Input = styled.input`

@@ -18,7 +18,7 @@ import {
 const FeaturedGames = () => {
   return (
     <FeaturedSectionContainer>
-      <h1>EM DESTAQUE</h1>
+      <h1>JOGOS EM DESTAQUE</h1>
       <CatalogContainer className="catalog1">
         <GamesContainer className="games1">
           <GameItem>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   MainContainer,
@@ -7,6 +8,7 @@ import {
   InputBox,
   Input,
   Button,
+  Buttons,
   WallpaperContainer,
   Form,
 } from "./style";
@@ -143,7 +145,12 @@ const Register = () => {
                   onChange={handleChange}
                 />
               </InputBox>
-              <Button type="submit">Cadastrar</Button>
+              <Buttons>
+                <Link to={"/login"}>
+                  <Button>Voltar</Button>
+                </Link>
+                <Button type="submit">Cadastrar</Button>
+              </Buttons>
             </Form>
           </Wrapper>
         </RegisterSection>
