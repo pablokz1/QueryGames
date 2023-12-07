@@ -134,6 +134,15 @@ function UserProfile() {
   const onPointerLeave = () => console.log("Leave");
   const onPointerMove = (value, index) => console.log(value, index);
 
+  const getNote = async (gameId) => {
+    try {
+      const response = await api.get(`scores/games/${gameId}`);
+      setRating(response.data.note);
+    } catch (error) {
+      console.error("Erro ao obter a pontuação do jogo:", error);
+    }
+  }  
+
   useEffect(() => {
     getUserLocalStorage();
   }, []);
@@ -174,6 +183,7 @@ function UserProfile() {
                       onPointerEnter={onPointerEnter}
                       onPointerLeave={onPointerLeave}
                       onPointerMove={onPointerMove}
+                      onChange={() => getNote(game.id)}
                     />
                   </td>
                   <CustonTd>

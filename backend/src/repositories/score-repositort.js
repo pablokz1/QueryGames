@@ -64,8 +64,8 @@ async function findByGameId(gameId) {
 
 async function insert(score) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('INSERT INTO scores(note, comments, gameId, userId) VALUES(?, ?, ?, ?)');
-        stmt.bind([score.note, score.comments, score.gameId, score.userId]);
+        const stmt = db.prepare('INSERT INTO scores(note, gameId, userId) VALUES(?, ?, ?)');
+        stmt.bind([score.note, score.gameId, score.userId]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with insert score!');
@@ -83,8 +83,8 @@ async function insert(score) {
 
 async function update(score) {
     return new Promise((resolve, reject) => {
-        const stmt = db.prepare('UPDATE scores set note = ?, comments = ?, gameId = ?, userId = ? WHERE id = ?');
-        stmt.bind([score.note, score.comments, score.gameId, score.userId, score.id]);
+        const stmt = db.prepare('UPDATE scores set note = ?, gameId = ?, userId = ? WHERE id = ?');
+        stmt.bind([score.note, score.gameId, score.userId, score.id]);
         stmt.run(err => {
             if (err) {
                 console.error('Occurred an error with update score!');
