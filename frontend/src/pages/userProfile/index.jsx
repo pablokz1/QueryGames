@@ -12,6 +12,16 @@ function UserProfile() {
   const [userGames, setUserGames] = useState([]);
   const [rating, setRating] = useState([]);
 
+  useEffect(() => {
+    getUserLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    if (userData.userId) {
+      getUserGames(userData.userId);
+    }
+  }, [userData]);
+
   function getUserLocalStorage() {
     const token = localStorage.getItem("token");
     if (token) {
@@ -38,11 +48,18 @@ function UserProfile() {
   async function getUserGames(userId) {
     try {
       const response = await api.get(`/users/games/${userId}`);
-      setUserGames(response.data);
+      const gamesWithNotes = await Promise.all(
+        response.data.map(async (game) => {
+          const noteResponse = await api.get(`scores/games/${game.id}`);
+          return { ...game, note: noteResponse.data.note };
+        })
+      );
+      setUserGames(gamesWithNotes);
     } catch (error) {
       console.error("Erro ao obter os jogos do usuário", error);
     }
   }
+  
 
   async function handleDeleteGame(gameId) {
     try {
@@ -83,10 +100,6 @@ function UserProfile() {
     }
   }
 
-  const handleTableRowClick = (clickedGameId) => {
-    handleRating(rating, clickedGameId);
-  };
-
   const handleRating = async (rate, gameId) => {
     if (rate >= 1 && rate <= 5) {
       setRating(rate);
@@ -113,6 +126,7 @@ function UserProfile() {
         await api.put(
           `scores/${response.data.id}`,
           {
+            id: response.data.id,
             note: rate,
             gameId: gameId,
             userId: userData.userId,
@@ -129,29 +143,6 @@ function UserProfile() {
       console.error("Erro ao enviar pontuação para a API:", error);
     }
   };
-
-  const onPointerEnter = () => console.log("Enter");
-  const onPointerLeave = () => console.log("Leave");
-  const onPointerMove = (value, index) => console.log(value, index);
-
-  const getNote = async (gameId) => {
-    try {
-      const response = await api.get(`scores/games/${gameId}`);
-      setRating(response.data.note);
-    } catch (error) {
-      console.error("Erro ao obter a pontuação do jogo:", error);
-    }
-  }  
-
-  useEffect(() => {
-    getUserLocalStorage();
-  }, []);
-
-  useEffect(() => {
-    if (userData.userId) {
-      getUserGames(userData.userId);
-    }
-  }, [userData]);
 
   return (
     <>
@@ -179,11 +170,8 @@ function UserProfile() {
                   <td>{game.category}</td>
                   <td>
                     <Rating
+                      initialValue={game.note}
                       onClick={(rate) => handleRating(rate, game.id)}
-                      onPointerEnter={onPointerEnter}
-                      onPointerLeave={onPointerLeave}
-                      onPointerMove={onPointerMove}
-                      onChange={() => getNote(game.id)}
                     />
                   </td>
                   <CustonTd>
