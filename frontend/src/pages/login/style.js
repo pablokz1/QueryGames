@@ -49,38 +49,26 @@ export const ForgotPasswordLink = styled.a`
   }
 `;
 
+export const Buttons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+`;
+
 export const Button = styled.button`
   font-weight: 600;
-  width: 146px;
+  width: 120px;
   height: 36px;
   padding: 5px;
   border-radius: 4px;
   background-color: #262626;
   color: white;
   border: none;
-  margin-bottom: 50px;
 
   &:hover {
     background-color: #fec163;
     color: #0d0d0d;
     cursor: pointer;
-  }
-`;
-
-export const SignUpLink = styled.a`
-  color: white;
-  text-decoration: none;
-  font-weight: 400px;
-  font-size: 15px;
-  text-align: center;
-
-  &:visited {
-    color: white;
-  }
-
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: #f2bf5e;
   }
 `;
 

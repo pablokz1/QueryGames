@@ -13,7 +13,7 @@ const Footer = () => {
       <PlayStoreImage src={playStory} alt="baixe Nosso App" />
       <ContainerList>
         <li>
-          <Link to='/home'>Início</Link>
+          <Link to='/home'><i class="bi bi-house"></i> Início</Link>
         </li>
         <li>
           <p>Flae conosco <br/>

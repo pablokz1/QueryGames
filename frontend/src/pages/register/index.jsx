@@ -70,10 +70,22 @@ const Register = () => {
       return;
     }
 
+    const minDate = new Date("1900-01-01");
+    const maxDate = new Date("2018-01-01");
+    const selectedDate = new Date(formData.dateOfBirth);
+
+    if (selectedDate < minDate || selectedDate > maxDate) {
+      Swal.fire({
+        icon: "error",
+        title: "Data de nascimento inválida",
+        text: "Por favor, verifique a data de nascimento.",
+      });
+      return;
+    }
+
     try {
       const response = await api.post("users", formData);
       console.log(response.data);
-
       Swal.fire({
         icon: "success",
         title: "Cadastro Realizado com Sucesso",
@@ -84,7 +96,6 @@ const Register = () => {
       });
     } catch (error) {
       console.error(error);
-
       Swal.fire({
         icon: "error",
         title: "Erro ao criar usuário",

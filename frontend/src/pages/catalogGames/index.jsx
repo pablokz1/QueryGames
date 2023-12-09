@@ -118,7 +118,7 @@ const CatalogGames = () => {
       <MainContainer>
         <CalatalogContainer>
           <CatalogWrapper>
-            <h1>Catalogar Jogos</h1>
+            <h1><i class="bi bi-controller"></i> Catalogar Jogos</h1>
               <InputBox>
                 <Input
                   type="text"

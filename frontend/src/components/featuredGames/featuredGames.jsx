@@ -18,50 +18,50 @@ import {
 const FeaturedGames = () => {
   return (
     <FeaturedSectionContainer>
-      <h1>JOGOS EM DESTAQUE</h1>
-      <CatalogContainer className="catalog1">
-        <GamesContainer className="games1">
+      <h1><i class="bi bi-star"></i> JOGOS EM DESTAQUE</h1>
+      <CatalogContainer>
+        <GamesContainer>
           <GameItem>
             <GameImage src={Fifa}/>
             <h2>FC 24</h2>
             <p>Esportes</p>
-            <Platforms className="platforms">EA PLAY</Platforms>
+            <Platforms>EA PLAY</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={Batman} alt="" />
             <h2>BATMAN ARKHAM NIGHT</h2>
             <p>Ação</p>
-            <Platforms className="platforms">PSN</Platforms>
+            <Platforms>PSN</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={GTA} alt="" />
             <h2>GRAND THEFT AUTO V</h2>
             <p>Ação</p>
-            <Platforms className="platforms">GAME PASS</Platforms>
+            <Platforms>GAME PASS</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={TheForest} alt="" />
             <h2>THE FOREST</h2>
             <p>Ação</p>
-            <Platforms className="platforms">STEAM</Platforms>
+            <Platforms>STEAM</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={RE} alt="" />
             <h2>RESIDENT EVIL</h2>
             <p>Ação</p>
-            <Platforms className="platforms">STEAM</Platforms>
+            <Platforms>STEAM</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={Valorant} alt="" />
             <h2>VALORANT</h2>
             <p>Ação</p>
-            <Platforms className="platforms">STEAM</Platforms>
+            <Platforms>STEAM</Platforms>
           </GameItem>
           <GameItem>
             <GameImage src={TheSims} alt="" />
             <h2>THE SIMS</h2>
             <p>Simulador</p>
-            <Platforms className="platforms">EA PLAY</Platforms>
+            <Platforms>EA PLAY</Platforms>
           </GameItem>
         </GamesContainer>
       </CatalogContainer>

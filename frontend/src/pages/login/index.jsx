@@ -5,9 +5,8 @@ import {
   MainContainer,
   LoginContainer,
   LoginWrapper,
-  ForgotPasswordLink,
+  Buttons,
   Button,
-  SignUpLink,
   InputBox,
   PasswordIcon,
   Input,
@@ -88,7 +87,7 @@ const Login = () => {
               <Input
                 type="text"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
                 id="email"
                 value={formLogin.email}
                 onChange={handleChangeInput}
@@ -111,10 +110,12 @@ const Login = () => {
               />
             </InputBox>
 
-            <Button onClick={login}>Entrar</Button>
-            <Link to="/register">
-              <SignUpLink>Cadastre-se</SignUpLink>
-            </Link>
+            <Buttons>
+              <Button onClick={login}>Entrar</Button>
+              <Link to="/register">
+                <Button>Cadastre-se</Button>
+              </Link>
+            </Buttons>
           </LoginWrapper>
         </LoginContainer>
 

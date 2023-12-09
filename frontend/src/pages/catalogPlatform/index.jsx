@@ -71,7 +71,7 @@ const CatalogPlatform = () => {
       <MainContainer>
         <CalatalogContainer>
           <CatalogWrapper>
-            <h1>Cadastrar Plataforma</h1>
+            <h1><i class="bi bi-joystick"></i> Cadastrar Plataforma</h1>
             <InputBox>
               <Input
                 type="text"

@@ -48,13 +48,7 @@ function UserProfile() {
   async function getUserGames(userId) {
     try {
       const response = await api.get(`/users/games/${userId}`);
-      const gamesWithNotes = await Promise.all(
-        response.data.map(async (game) => {
-          const noteResponse = await api.get(`scores/games/${game.id}`);
-          return { ...game, note: noteResponse.data.note };
-        })
-      );
-      setUserGames(gamesWithNotes);
+      setUserGames(response.data);
     } catch (error) {
       console.error("Erro ao obter os jogos do usuário", error);
     }
@@ -99,6 +93,102 @@ function UserProfile() {
     }
   }
 
+  async function handleUpdateGame(gameId) {
+    try {
+      const gameResponse = await api.get(`games/${gameId}`);
+      const gameData = gameResponse.data;
+      const platformsResponse = await api.get("platforms");
+      const categoriesResponse = await api.get("categories");
+      const platforms = platformsResponse.data;
+      const categories = categoriesResponse.data;
+      
+      const swalResult = await Swal.fire({
+        title: "Atualizar Jogo",
+        html: `
+          <div style="margin-bottom: 10px;">
+            <label for="swal-input1">Nome:</label>
+            <input id="swal-input1" class="swal2-input" value="${gameData.name}">
+          </div>
+          <div style="margin-bottom: 10px;">
+            <label for="swal-input2">Plataforma:</label>
+            <select id="swal-input2" class="swal2-input">
+              ${platforms
+                .map(
+                  (platform) =>
+                    `<option value="${platform.id}" ${
+                      platform.id === gameData.platformId ? "selected" : ""
+                    }>${platform.name}</option>`
+                )}
+            </select>
+          </div>
+          <div style="margin-bottom: 10px;">
+            <label for="swal-input3">Categorias:</label>
+            <select id="swal-input3" class="swal2-input">
+              ${categories
+                .map(
+                  (category) =>
+                    `<option value="${category.id}" ${
+                      category.id === gameData.categories[0].id ? "selected" : ""
+                    }>${category.name}</option>`
+                )}
+            </select>
+          </div>
+        `,
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: "Sim",
+        cancelButtonText: "Não",
+      });
+      
+      if (swalResult.isConfirmed) {
+        const updatedName = document.getElementById("swal-input1").value;
+        const updatedPlatformId = parseInt(document.getElementById("swal-input2").value);
+        const updatedCategories = parseInt(document.getElementById("swal-input3").value);
+        const payload = {
+          id: gameId,
+          name: updatedName,
+          platformId: updatedPlatformId,
+          categories: [
+            {
+              id: updatedCategories,
+            },
+          ],
+        };
+        const updateResponse = await api.put(
+          `games/${gameId}`,
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (updateResponse.status === 204) {
+          const updatedUserGames = userGames.map((game) =>
+            game.id === gameId ? { ...game, ...updateResponse.data } : game
+          );
+          setUserGames(updatedUserGames);
+          Swal.fire({
+            title: "Atualizado!",
+            text: "O jogo foi atualizado com sucesso.",
+            icon: "success",
+            showConfirmButton: false,
+          });
+          setTimeout(function() {
+            window.location.reload();
+        }, 2000);
+        } else {
+          Swal.fire("", "O jogo não foi atualizado.", "error");
+        }
+      } else {
+        Swal.fire("", "Atualização cancelada.", "info");
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar o jogo", error);
+      Swal.fire("", "Ocorreu um erro ao atualizar o jogo.", "error");
+    }
+  }
+  
   const handleRating = async (rate, gameId) => {
     if (rate >= 1 && rate <= 5) {
       setRating(rate);
@@ -149,7 +239,7 @@ function UserProfile() {
       <Section>
         <div>
           <h1>
-            <i className="bi bi-card-list"></i> Meus Jogos
+            <i class="bi bi-list"></i> Meus Jogos
           </h1>
           <CustomTable>
             <thead>
@@ -169,7 +259,7 @@ function UserProfile() {
                   <td>{game.category}</td>
                   <td>
                     <Rating
-                    size={14}
+                      size={14}
                       initialValue={game.note}
                       onClick={(rate) => handleRating(rate, game.id)}
                     />
@@ -177,9 +267,15 @@ function UserProfile() {
                   <CustonTd>
                     <Button
                       variant="danger"
+                      onClick={() => handleUpdateGame(game.id)}
+                    >
+                      <i class="bi bi-pencil"></i> <span> Editar</span>
+                    </Button>
+                    <Button
+                      variant="danger"
                       onClick={() => handleDeleteGame(game.id)}
                     >
-                      Excluir
+                      <i class="bi bi-trash"></i> <span> Excluir</span>
                     </Button>
                   </CustonTd>
                 </tr>

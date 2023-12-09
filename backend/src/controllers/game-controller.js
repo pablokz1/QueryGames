@@ -33,12 +33,14 @@ async function post(req, res) {
 }
 
 async function putById(req, res) {
+    const content =  req.body;
     const game = await gameRepository.findById(req.params.id);
     if (!game) {
         res.status(404).json({message: 'game not found!'});
         return;
     } 
     await gameRepository.update(req.body);
+    await gameCategoryRepository.update(game.id, content.categories[0].id)
     res.status(204).json()
 }
 

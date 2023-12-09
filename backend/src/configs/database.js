@@ -60,6 +60,16 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (10, 'The Division 2', 10)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (11, 'God Of War', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (12, 'Halo Infinit', 2)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (13, 'Shadow of the Colossus', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (14, 'Boomberman', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (15, 'Sea of Tihves', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (16, 'Assassis creed blac flag', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (17, 'GTA IV', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (18, 'Diablo III', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (19, 'Destine 2', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (20, 'Devil My Cry 5', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (21, 'Hollow Knigth', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (22, 'Dark Souls', 1)");
 
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (2, 2, 2)");
@@ -71,7 +81,19 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (8, 8, 8)");
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (9, 9, 9)");
     db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (10, 10, 10)");
-    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (11, 1, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (11, 11, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (12, 12, 2)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (13, 13, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (14, 14, 7)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (15, 15, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (16, 16, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (17, 17, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (18, 18, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (18, 18, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (19, 19, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (20, 20, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (21, 21, 1)");
+    db.run("INSERT OR IGNORE INTO games_platforms (id, gameId, platformId) VALUES (22, 22, 1)");
 
     db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (2, 2, 2)");
@@ -83,6 +105,18 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (8, 8, 8)");
     db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (9, 9, 9)");
     db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (10, 10, 10)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (11, 1, 11)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (12, 1, 12)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (13, 1, 13)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (14, 1, 14)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (15, 1, 15)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (16, 1, 16)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (17, 1, 17)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (18, 1, 18)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (19, 1, 19)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (20, 1, 20)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (21, 1, 21)");
+    db.run("INSERT OR IGNORE INTO user_games (id, userId, gameId) VALUES (22, 1, 22)");
 
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (1, 1, 1)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (2, 2, 2)");
@@ -96,6 +130,16 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (10, 10, 10)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (11, 11, 1)");
     db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (12, 12, 2)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (13, 13, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (14, 14, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (15, 15, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (16, 16, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (17, 17, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (18, 18, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (19, 19, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (20, 20, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (21, 21, 1)");
+    db.run("INSERT OR IGNORE INTO games_categories (id, gameId, categoryId) VALUES (22, 22, 1)");
 
     db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (1, 4, 1, 1)");
     db.run("INSERT OR IGNORE INTO scores (id, note, gameId, userId) VALUES (2, 4, 2, 2)");

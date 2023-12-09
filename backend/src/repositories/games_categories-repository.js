@@ -32,6 +32,21 @@ async function insert(gameId, categoryId) {
     });
 }
 
+async function update(gameId, newCategoryId) {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare('UPDATE games_categories SET categoryId = ? WHERE gameId = ?');
+        stmt.bind([newCategoryId, gameId]);
+        stmt.run(err => {
+            if (err) {
+                console.error('Occurred an error with update game!');
+                reject(err);
+            }
+            resolve();
+        });
+        stmt.finalize();
+    });
+}
+
 async function deleteByGameId(gameId) {
     return new Promise((resolve, reject) => {
         const stmt = db.prepare('DELETE FROM games_categories WHERE gameId = ?');
@@ -47,4 +62,4 @@ async function deleteByGameId(gameId) {
    });
 }
 
-module.exports = {findByGameId, insert, deleteByGameId};
+module.exports = {findByGameId, insert, update, deleteByGameId};

@@ -51,13 +51,13 @@ const Header = () => {
       </Link>
       <ContainerList>
         <li>
-          <Link to="/userProfile">Meu Perfil</Link>
+          <Link to="/userProfile"><i class="bi bi-person"></i> Meu Perfil</Link>
         </li>
         <li>
-          <Link to="/catalogGames">Catalogar Jogo</Link>
+          <Link to="/catalogGames"><i class="bi bi-controller"></i> Catalogar Jogo</Link>
         </li>
         <li>
-          <Link to="/catalogPlatform">Cadastrar Plataforma</Link>
+          <Link to="/catalogPlatform"><i class="bi bi-joystick"></i> Cadastrar Plataforma</Link>
         </li>
       </ContainerList>
       <p>

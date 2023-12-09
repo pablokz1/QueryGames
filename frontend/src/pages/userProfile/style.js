@@ -113,6 +113,10 @@ export const Button = styled.button`
     display: flex;
     padding: 10px 20px;
     font-size: 12px;
+
+    span {
+      display: none;
+    }
   }
 `;
 
