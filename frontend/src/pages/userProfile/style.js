@@ -111,8 +111,8 @@ export const Button = styled.button`
 
   @media (max-width: 768px) {
     display: flex;
-    padding: 10px 20px;
-    font-size: 12px;
+    padding: 8px 18px;
+    font-size: 10px;
 
     span {
       display: none;

@@ -36,7 +36,7 @@ function RouterMain() {
         path="/catalogPlatform"
         element={<PrivateRoute element={<CatalogPlatform />} />}
       />
-      <Route path="*" element={<h1>Hello World</h1>} />
+      <Route path="*" element={<h1>Rota inexistente</h1>} />
     </Routes>
   );
 }

@@ -61,7 +61,7 @@ async function findByEmailAndPassword(email, password) {
 async function findGamesById(id) {
     return new Promise((resolve, reject) => {
         const games = [];
-        db.each(`SELECT G.id, G.name as game, P.name as platform, C.name as category, S.note FROM users U INNER JOIN user_games UG ON (U.id = UG.userId) INNER JOIN games G on (UG.gameId = g.id) INNER JOIN platforms P on (G.platformId = P.id) INNER JOIN games_categories GC on (G.id = GC.gameId) INNER JOIN categories C on (GC.categoryId = C.id) LEFT JOIN scores S on (G.id = s.gameId) WHERE U.id = ${id}`, (err, row) => {
+        db.each(`SELECT DISTINCT G.id, G.name as game, P.name as platform, C.name as category, S.note FROM users U INNER JOIN user_games UG ON (U.id = UG.userId) INNER JOIN games G on (UG.gameId = g.id) INNER JOIN platforms P on (G.platformId = P.id) INNER JOIN games_categories GC on (G.id = GC.gameId) INNER JOIN categories C on (GC.categoryId = C.id) LEFT JOIN scores S on (G.id = s.gameId) WHERE U.id = ${id}`, (err, row) => {
             if (err) {
                 console.error('Occurred an error with find all games created from user!');
                 reject(err);

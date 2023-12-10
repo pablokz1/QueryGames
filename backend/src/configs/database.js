@@ -66,7 +66,7 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (16, 'Assassis creed blac flag', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (17, 'GTA IV', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (18, 'Diablo III', 1)");
-    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (19, 'Destine 2', 1)");
+    db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (19, 'Destiny 2', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (20, 'Devil My Cry 5', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (21, 'Hollow Knigth', 1)");
     db.run("INSERT OR IGNORE INTO games (id, name, platformId) VALUES (22, 'Dark Souls', 1)");
